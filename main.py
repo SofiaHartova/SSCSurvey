@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Login page
 @app.route('/login', methods=['GET'])
 def login_page():
-    return render_template("login_page.html")
+    return render_template("sign-in.html")
 
 # Processing login and password
 @app.route('/login', methods=['POST'])
@@ -15,7 +15,7 @@ def login():
 # Action selection page (fill in data/view data)
 @app.route('/action', methods=['GET'])
 def action_page():
-    pass
+    return render_template("option.html")
 
 # First block of questions
 @app.route('/questions1', methods=['POST'])
