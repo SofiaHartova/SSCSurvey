@@ -1,0 +1,9 @@
+body {
+    background-color: #a7a7a7;
+}
+.hidden {
+    display: none;
+}
+.btn {
+    display: block;
+}

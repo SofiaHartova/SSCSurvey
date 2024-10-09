@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросник для сбора данных</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/block1.css">
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Опросник для сбора данных</h2>
+        <form id="surveyForm">
+            
+            <div class="mb-3">
+                <label for="totalStudents" class="form-label">1. Сколько обучающихся всего в общеобразовательной организации?</label>
+                <input type="number" class="form-control" id="totalStudents" placeholder="Введите количество обучающихся" required>
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label">2. Сколько обучающихся занимается на базе школьного спортивного клуба (ШСК)? Укажите численность обучающихся по классам:</label>
+                <div class="row">
+                    
+                    <div class="col">
+                        <label for="class1" class="form-label">1 класс</label>
+                        <input type="number" class="form-control" id="class1" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class2" class="form-label">2 класс</label>
+                        <input type="number" class="form-control" id="class2" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class3" class="form-label">3 класс</label>
+                        <input type="number" class="form-control" id="class3" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class4" class="form-label">4 класс</label>
+                        <input type="number" class="form-control" id="class1" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class5" class="form-label">5 класс</label>
+                        <input type="number" class="form-control" id="class2" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class6" class="form-label">6 класс</label>
+                        <input type="number" class="form-control" id="class3" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class7" class="form-label">7 класс</label>
+                        <input type="number" class="form-control" id="class1" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class8" class="form-label">8 класс</label>
+                        <input type="number" class="form-control" id="class2" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class9" class="form-label">9 класс</label>
+                        <input type="number" class="form-control" id="class3" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class10" class="form-label">10 класс</label>
+                        <input type="number" class="form-control" id="class1" placeholder="0" required>
+                    </div>
+                    <div class="col">
+                        <label for="class11" class="form-label">11 класс</label>
+                        <input type="number" class="form-control" id="class2" placeholder="0" required>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label">3. Виды спорта, развиваемые на базе ШСК. Выберите нужные виды и укажите количество занимающихся:</label>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="basketball" id="basketballCheck">
+                    <label class="form-check-label" for="basketballCheck">Баскетбол</label>
+                    <input type="number" class="form-control hidden mt-2" id="basketballCount" placeholder="Численность баскетболистов">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="boxing" id="boxingCheck">
+                    <label class="form-check-label" for="boxingCheck">Бокс</label>
+                    <input type="number" class="form-control hidden mt-2" id="boxingCount" placeholder="Численность боксеров">
+                </div>
+                
+            </div>
+
+            
+            <button type="button" class="btn btn-secondary mb-3" id="otherSportsBtn">Другое</button>
+
+            
+            <div id="otherSports" class="hidden">
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="aikido" id="aikidoCheck">
+                    <label class="form-check-label" for="aikidoCheck">Айкидо</label>
+                    <input type="number" class="form-control hidden mt-2" id="aikidoCount" placeholder="Численность занимающихся айкидо">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="wrestling" id="wrestlingCheck">
+                    <label class="form-check-label" for="wrestlingCheck">Борьба на поясах</label>
+                    <input type="number" class="form-control hidden mt-2" id="wrestlingCount" placeholder="Численность занимающихся борьбой на поясах">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="darts" id="dartsCheck">
+                    <label class="form-check-label" for="dartsCheck">Дартс</label>
+                    <input type="number" class="form-control hidden mt-2" id="dartsCountFull" placeholder="Численность игроков в дартс">
+                </div>
+                
+            </div>
+
+            
+            <button type="submit" class="btn btn-primary mt-3">Далее</button>
+        </form>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // JavaScript для показа/скрытия полей ввода численности спортсменов
+        document.querySelectorAll('.sport-checkbox').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                const countField = document.getElementById(this.value + 'Count');
+                if (this.checked) {
+                    countField.classList.remove('hidden');
+                    countField.setAttribute('required', 'required');
+                } else {
+                    countField.classList.add('hidden');
+                    countField.removeAttribute('required');
+                    countField.value = ''; // Очищаем значение при скрытии
+                }
+            });
+        });
+
+        // Показ/скрытие полного списка видов спорта
+        const otherSportsBtn = document.getElementById('otherSportsBtn');
+        const otherSportsDiv = document.getElementById('otherSports');
+        
+        otherSportsBtn.addEventListener('click', function () {
+            if (otherSportsDiv.classList.contains('hidden')) {
+                otherSportsDiv.classList.remove('hidden');
+                otherSportsBtn.textContent = 'Скрыть другие виды спорта';
+            } else {
+                otherSportsDiv.classList.add('hidden');
+                otherSportsBtn.textContent = 'Другое';
+            }
+        });
+    </script>
+</body>
+
+</html>
