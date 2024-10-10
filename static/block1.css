@@ -4,6 +4,13 @@ body {
 .hidden {
     display: none;
 }
-.btn {
+#otherSportsBtn {
     display: block;
+}
+#addEventBtn {
+    display: block;
+}
+a {
+    color: white;
+    text-decoration: none;
 }
