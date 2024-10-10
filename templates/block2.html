@@ -64,12 +64,13 @@
 
       <!-- Добавьте больше блоков мероприятий по аналогии с event1, event2 -->
 
-      <button type="submit" class="btn btn-primary"><a href="block1.html">Назад</a></button>
-      <button type="submit" class="btn btn-primary"><a href="block3.html">Далее</a></button>
+      <button type="submit" class="btn btn-primary" id="backPageBtn"><a href="block1.html">Назад</a></button>
+      <button type="submit" class="btn btn-primary" id="nextPageBtn"><a href="block3.html">Далее</a></button>
     </form>
   </div>
 
   <script>
+
     function toggleInputs(eventId) {
       const inputs = document.getElementById('inputs' + eventId);
       if (inputs.style.display === "none" || inputs.style.display === "") {
@@ -78,11 +79,56 @@
         inputs.style.display = "none";
       }
     }
-        document.getElementById('eventsForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          // Логика обработки данных формы
-          alert('Форма отправлена');
-        });
+    function saveEventData() {
+        const event1Checked = document.getElementById('event1').checked;
+        const participants1 = document.getElementById('participants1').value;
+        const date1 = document.getElementById('date1').value;
+  
+        const event2Checked = document.getElementById('event2').checked;
+        const participants2 = document.getElementById('participants2').value;
+        const date2 = document.getElementById('date2').value;
+  
+        // Сохраняем данные о мероприятиях в localStorage
+        const eventData = {
+          event1: {
+            checked: event1Checked,
+            participants: participants1,
+            date: date1
+          },
+          event2: {
+            checked: event2Checked,
+            participants: participants2,
+            date: date2
+          }
+        };
+  
+        localStorage.setItem('eventData', JSON.stringify(eventData));
+    } 
+    document.getElementById('backPageBtn').addEventListener('click', saveEventData);
+    document.getElementById('nextPageBtn').addEventListener('click', saveEventData);
+  
+      // Функция для загрузки данных из localStorage
+    function loadEventData() {
+        const savedData = localStorage.getItem('eventData');
+        if (savedData) {
+          const eventData = JSON.parse(savedData);
+  
+          document.getElementById('event1').checked = eventData.event1.checked;
+          document.getElementById('participants1').value = eventData.event1.participants;
+          document.getElementById('date1').value = eventData.event1.date;
+  
+          document.getElementById('event2').checked = eventData.event2.checked;
+          document.getElementById('participants2').value = eventData.event2.participants;
+          document.getElementById('date2').value = eventData.event2.date;
+  
+          // Отобразить скрытые блоки, если мероприятия были выбраны
+          toggleInputs(1);
+          toggleInputs(2);
+        }
+      }
+      console.log(localStorage.getItem('eventData'))
+      // Загрузить данные при загрузке страницы
+    window.onload = loadEventData;
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
