@@ -4,7 +4,11 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key' # Key for sessions to store user data
 
 # Login page
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+def root():
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         login = request.form.get('login')
