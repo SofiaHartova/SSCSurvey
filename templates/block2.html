@@ -11,13 +11,12 @@
 <body>
   <div class="container my-4">
     <h2 class="mb-4">Выберите мероприятия и укажите количество участников и дату</h2>
-    <form id="eventsForm">
+    <form id="eventsForm" method="POST" action="/block2">
       <div class="mb-3">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event1" onchange="toggleInputs(1)">
           <label class="form-check-label" for="event1">
-            Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций
-          </label>
+            Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)          </label>
         </div>
         <div class="hidden" id="inputs1">
           <div class="row g-3 align-items-center my-2">
@@ -36,12 +35,11 @@
           </div>
         </div>
       </div>
-
       <div class="mb-3">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event2" onchange="toggleInputs(2)">
           <label class="form-check-label" for="event2">
-            Всероссийские соревнования по волейболу «Серебряный мяч»
+            Всероссийские соревнования по волейболу «Серебряный мяч» среди команд общеобразовательных организаций (в рамках общероссийского проекта «Волейбол – в школу»)
           </label>
         </div>
         <div class="hidden" id="inputs2">
@@ -61,11 +59,732 @@
           </div>
         </div>
       </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event3" onchange="toggleInputs(3)">
+          <label class="form-check-label" for="event3">
+            Всероссийские соревнования по легкоатлетическому четырехборью «Шиповка юных» среди обучающихся общеобразовательных организаций
+          </label>
+        </div>
+        <div class="hidden" id="inputs3">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants3" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants3" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date3" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date3">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event4" onchange="toggleInputs(4)">
+          <label class="form-check-label" for="event4">
+            Всероссийские соревнования по лыжным гонкам среди обучающихся общеобразовательных учреждений на призы газеты «Пионерская правда»
+          </label>
+        </div>
+        <div class="hidden" id="inputs4">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants4" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants4" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date4" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date4">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event5" onchange="toggleInputs(5)">
+          <label class="form-check-label" for="event5">
+            Всероссийские соревнования по мини-футболу (футзалу) среди команд общеобразовательных организаций (в рамках общероссийского проекта «Мини-футбол – в школу»)
+          </label>
+        </div>
+        <div class="hidden" id="inputs5">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants5" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants5" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date5" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date5">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event6" onchange="toggleInputs(6)">
+          <label class="form-check-label" for="event6">
+            Всероссийские соревнования юных футболистов «Кожаный мяч»
+          </label>
+        </div>
+        <div class="hidden" id="inputs6">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants6" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants6" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date6" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date6">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event7" onchange="toggleInputs(7)">
+          <label class="form-check-label" for="event7">
+            Всероссийские соревнования юных хоккеистов «Золотая шайба»
+          </label>
+        </div>
+        <div class="hidden" id="inputs7">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants7" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants7" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date7" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date7">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event8" onchange="toggleInputs(8)">
+          <label class="form-check-label" for="event8">
+            Открытые Всероссийские соревнования по шахматам «Белая ладья» среди команд общеобразовательных организаций
+          </label>
+        </div>
+        <div class="hidden" id="inputs8">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants8" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants8" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date8" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date8">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event9" onchange="toggleInputs(9)">
+          <label class="form-check-label" for="event9">
+            Спартакиада молодежи России допризывного возраста
+          </label>
+        </div>
+        <div class="hidden" id="inputs9">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants9" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants9" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date9" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date9">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event10" onchange="toggleInputs(10)">
+          <label class="form-check-label" for="event10">
+            Всероссийские спортивные соревнования школьников «Президентские состязания»
+          </label>
+        </div>
+        <div class="hidden" id="inputs10">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants10" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants10" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date10" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date10">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event11" onchange="toggleInputs(11)">
+          <label class="form-check-label" for="event11">
+            Всероссийские спортивные игры школьников «Президентские спортивные игры»
+          </label>
+        </div>
+        <div class="hidden" id="inputs11">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants11" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants11" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date11" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date11">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event12" onchange="toggleInputs(12)">
+          <label class="form-check-label" for="event12">
+            Всероссийские массовые соревнования по баскетболу «Оранжевый мяч»
+          </label>
+        </div>
+        <div class="hidden" id="inputs12">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants12" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants12" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date12" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date12">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event13" onchange="toggleInputs(13)">
+          <label class="form-check-label" for="event13">
+            Всероссийские спортивные игры школьных спортивных клубов
+          </label>
+        </div>
+        <div class="hidden" id="inputs13">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants13" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants13" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date13" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date13">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event14" onchange="toggleInputs(14)">
+          <label class="form-check-label" for="event14">
+            Открытые Всероссийские массовые соревнования по конькобежному спорту «Лед надежды нашей»
+          </label>
+        </div>
+        <div class="hidden" id="inputs14">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants14" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants14" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date14" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date14">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event15" onchange="toggleInputs(15)">
+          <label class="form-check-label" for="event15">
+            Всероссийский день бега «Кросс нации»
+          </label>
+        </div>
+        <div class="hidden" id="inputs15">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants15" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants15" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date15" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date15">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event16" onchange="toggleInputs(16)">
+          <label class="form-check-label" for="event16">
+            Всероссийский день ходьбы
+          </label>
+        </div>
+        <div class="hidden" id="inputs16">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants16" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants16" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date16" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date16">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event17" onchange="toggleInputs(17)">
+          <label class="form-check-label" for="event17">
+            Открытая Всероссийская массовая лыжная гонка «Лыжня России»
+          </label>
+        </div>
+        <div class="hidden" id="inputs17">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants17" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants17" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date17" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date17">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event18" onchange="toggleInputs(18)">
+          <label class="form-check-label" for="event18">
+            Всероссийские массовые соревнования по спортивному ориентированию «Российский Азимут»
+          </label>
+        </div>
+        <div class="hidden" id="inputs18">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants18" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants18" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date18" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date18">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event19" onchange="toggleInputs(19)">
+          <label class="form-check-label" for="event19">
+            Всероссийские массовые соревнования «Оздоровительный спорт – в каждую семью»
+          </label>
+        </div>
+        <div class="hidden" id="inputs19">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants19" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants19" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date19" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date19">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event20" onchange="toggleInputs(20)">
+          <label class="form-check-label" for="event20">
+            Всероссийская Спартакиада специальной олимпиады
+          </label>
+        </div>
+        <div class="hidden" id="inputs20">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants20" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants20" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date20" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date20">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event21" onchange="toggleInputs(21)">
+          <label class="form-check-label" for="event21">
+            Всероссийский день самбо
+          </label>
+        </div>
+        <div class="hidden" id="inputs21">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants21" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants21" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date21" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date21">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event22" onchange="toggleInputs(22)">
+          <label class="form-check-label" for="event22">
+            Всероссийская массовая велосипедная гонка
+          </label>
+        </div>
+        <div class="hidden" id="inputs22">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants22" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants22" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date22" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date22">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event23" onchange="toggleInputs(23)">
+          <label class="form-check-label" for="event23">
+            Фестиваль Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди обучающихся общеобразовательных организаций
+          </label>
+        </div>
+        <div class="hidden" id="inputs23">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants23" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants23" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date23" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date23">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event24" onchange="toggleInputs(24)">
+          <label class="form-check-label" for="event24">
+            Фестиваль Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди обучающихся образовательных организаций высшего образования
+          </label>
+        </div>
+        <div class="hidden" id="inputs24">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants24" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants24" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date24" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date24">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event25" onchange="toggleInputs(25)">
+          <label class="form-check-label" for="event25">
+            Фестиваль Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди семейных команд
+          </label>
+        </div>
+        <div class="hidden" id="inputs25">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants25" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants25" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date25" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date25">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event26" onchange="toggleInputs(26)">
+          <label class="form-check-label" for="event26">
+            Всероссийские соревнования по многоборьям Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди граждан, проживающих в сельской местности
+          </label>
+        </div>
+        <div class="hidden" id="inputs26">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants26" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants26" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date26" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date26">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event27" onchange="toggleInputs(27)">
+          <label class="form-check-label" for="event27">
+            Всероссийская военно-патриотическая игра «Зарница»
+          </label>
+        </div>
+        <div class="hidden" id="inputs27">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants27" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants27" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date27" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date27">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event28" onchange="toggleInputs(28)">
+          <label class="form-check-label" for="event28">
+            Всероссийский проект «Вызов первых»
+          </label>
+        </div>
+        <div class="hidden" id="inputs28">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants28" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants28" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date28" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date28">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event29" onchange="toggleInputs(29)">
+          <label class="form-check-label" for="event29">
+            Турнир «Школьная баскетбольная лига 3х3 им. Кирилла Писклова»
+          </label>
+        </div>
+        <div class="hidden" id="inputs29">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants29" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants29" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date29" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date29">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event30" onchange="toggleInputs(30)">
+          <label class="form-check-label" for="event30">
+            Турнир по волейболу среди команд общеобразовательных организаций субъектов Российской Федерации
+          </label>
+        </div>
+        <div class="hidden" id="inputs30">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants30" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants30" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date30" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date30">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="event31" onchange="toggleInputs(31)">
+          <label class="form-check-label" for="event31">
+            Чемпионат Школьной баскетбольной лиги «КЭС-БАСКЕТ»
+          </label>
+        </div>
+        <div class="hidden" id="inputs31">
+          <div class="row g-3 align-items-center my-2">
+            <div class="col-auto">
+              <label for="participants31" class="col-form-label">Количество участников</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" class="form-control" id="participants31" placeholder="Введите количество">
+            </div>
+            <div class="col-auto">
+              <label for="date31" class="col-form-label">Дата проведения</label>
+            </div>
+            <div class="col-auto">
+              <input type="date" class="form-control" id="date31">
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <!-- Добавьте больше блоков мероприятий по аналогии с event1, event2 -->
-
-      <button type="submit" class="btn btn-primary" id="backPageBtn"><a href="block1.html">Назад</a></button>
-      <button type="submit" class="btn btn-primary" id="nextPageBtn"><a href="block3.html">Далее</a></button>
+      <button type="submit" class="btn btn-secondary" name="action" value="back">Назад</button>
+      <button type="submit" class="btn btn-primary" name="action" value="next">Далее</button>
     </form>
   </div>
 
