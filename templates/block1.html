@@ -959,7 +959,7 @@
                 
             </div>
             
-            <button type="submit" class="btn btn-primary">Далее</button>
+            <button type="submit" class="btn btn-primary" id="nextPageBtn">Далее</button>
         </form>
     </div>
 
@@ -1023,7 +1023,7 @@
                 } else {
                     countField.classList.add('hidden');
                     countField.removeAttribute('required');
-                    countField.value = ''; // Очищаем значение при скрытии
+                    countField.value = '';
                 }
             });
         });
