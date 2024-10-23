@@ -1,43 +1,85 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
 
 app = Flask(__name__)
+login = LoginManager(app)
 app.secret_key = 'your_secret_key' # Key for sessions to store user data
+login.login_view = 'login'
 
-# Login page
+# Temporary user store for demo purposes
+users = {'admin': {'password': 'password'}}
+
+#User class implementing UserMixin
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+    
+    def get_id(self):
+        return self.id
+
+
+@login.user_loader
+def load_user(user_id):
+    if user_id in users:
+        return User(user_id)
+    return None
+
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    """
+    Login page
+    """
     if request.method == 'POST':
         login = request.form.get('login')
         password = request.form.get('password')
 
-        if login == 'admin' and password == 'password':
+        if login in users and users[login]['password'] == password:
+            user = User(login) 
+            login_user(user)
             session['user'] = login
             return redirect(url_for('action'))
         else:
-            return "Неверный логин или пароль!"
+            flash("Неверный логин или пароль!")
 
     return render_template('sign-in.html')
 
-# Action selection page (fill in data/view data)
+
+@app.route('/logout')
+@login_required
+def logout():
+    """
+    Logout the user
+    """
+    logout_user()
+    flash("Вы вышли из системы")
+    return redirect(url_for('login'))
+
+
 @app.route('/action', methods=['GET'])
+@login_required
 def action():
-    if 'user' not in session:
-        return redirect(url_for('login'))
+    """
+    Action selection page (fill in data/view data)
+    """
     return render_template('option.html')
 
-# Processing the "Внести данные" button
+
 @app.route('/start-survey')
+@login_required
 def start_survey():
-    if 'user' not in session:
-        return redirect(url_for('login'))
+    """
+    Processing the "Внести данные" button
+    """
     return redirect(url_for('block1'))
 
-# First block of questions
-@app.route('/block1', methods=['GET', 'POST'])
-def block1():
-    if 'user' not in session:
-        return redirect(url_for('login'))
 
+@app.route('/block1', methods=['GET', 'POST'])
+@login_required
+def block1():
+    """
+    Processing the first block of questions
+    """
     if request.method == 'POST':
         data = {
             'totalStudents': request.form.get('totalStudents'),
@@ -58,12 +100,13 @@ def block1():
 
     return render_template('block1.html')
 
-# Second block of questions
-@app.route('/block2', methods=['GET', 'POST'])
-def block2():
-    if 'user' not in session:
-        return redirect(url_for('login'))
 
+@app.route('/block2', methods=['GET', 'POST'])
+@login_required
+def block2():
+    """
+    Processing the second block of questions
+    """
     if request.method == 'POST':
         event_data = {
             'event1': request.form.get('event1'),
@@ -79,12 +122,13 @@ def block2():
 
     return render_template('block2.html')
 
-# Third block of questions
-@app.route('/block3', methods=['GET', 'POST'])
-def block3():
-    if 'user' not in session:
-        return redirect(url_for('login'))
 
+@app.route('/block3', methods=['GET', 'POST'])
+@login_required
+def block3():
+    """
+    Processing the third block of questions
+    """
     if request.method == 'POST':
         event_details = {
             'eventName1': request.form.get('eventName1'),
@@ -100,26 +144,40 @@ def block3():
 
     return render_template('block3.html')
 
-# Thank you page
+
 @app.route('/thanks')
+@login_required
 def thanks():
-    if 'user' not in session:
-        return redirect(url_for('login'))
+    """
+    "Thank you" page
+    """
     return render_template("thanks.html")
 
-# Processing the "Посмотреть данные" button
+
 @app.route('/view-data')
+@login_required
 def view_data():
+    """
+    Processing the "Посмотреть данные" button
+    """
     pass
 
-# School data page
+
 @app.route('/school-data', methods=['GET'])
+@login_required
 def school_data():
+    """
+    School data page
+    """
     pass
 
-# School comparison page
+
 @app.route('/compare-schools', methods=['GET'])
+@login_required
 def compare_schools():
+    """
+    School comparison page
+    """
     pass
 
 if __name__ == '__main__':
