@@ -14,3 +14,18 @@ a {
     color: white;
     text-decoration: none;
 }
+.delete-button {
+      position: absolute;
+      top: -20px;
+      right: -50%;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #ff0000;
+
+    }
+
+    .event-item {
+      position: relative;
+    }
