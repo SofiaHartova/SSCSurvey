@@ -17,7 +17,7 @@
             
             <div class="mb-3">
                 <label for="totalStudents" class="form-label">1. Сколько обучающихся всего в общеобразовательной организации?</label>
-                <input type="number" class="form-control" id="totalStudents" value="0" placeholder="Введите количество обучающихся">
+                <input type="number" class="form-control" id="totalStudents" value="0" min="0" max="10000" placeholder="Введите количество обучающихся">
             </div>
 
             
@@ -1023,7 +1023,7 @@
         document.getElementById('nextPageBtn').addEventListener('click', saveFormData)
 
         console.log(localStorage.getItem('formData'))
-        // JavaScript для показа/скрытия полей ввода численности спортсменов
+
         document.querySelectorAll('.sport-checkbox').forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
                 const countField = document.getElementById(this.value + 'Count');
@@ -1092,10 +1092,9 @@
             }
         }
 
-    // Получаем все поля с ограничением на 0-10000 и назначаем слушатель события
-    document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
-        input.addEventListener('input', () => validateInputValue(input));
-    });
+        document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
+            input.addEventListener('input', () => validateInputValue(input));
+        });
 
         const otherSportsBtn = document.getElementById('otherSportsBtn');
         const otherSportsDiv = document.getElementById('otherSports');
