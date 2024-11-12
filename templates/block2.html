@@ -1,855 +1,1340 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мероприятия</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../static/block1.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросник для сбора данных</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/block1.css">
 
 </head>
+
 <body>
-  <div class="container my-4">
-    <h2 class="mb-4">Выберите мероприятия и укажите количество участников и дату</h2>
-    <form id="eventsForm" method="POST" action="/block2">
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event1" onchange="toggleInputs(1)">
-          <label class="form-check-label" for="event1">
-            Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)          </label>
-        </div>
-        <div class="hidden" id="inputs1">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants1" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants1" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date1" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date1">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event2" onchange="toggleInputs(2)">
-          <label class="form-check-label" for="event2">
-            Всероссийские соревнования по волейболу «Серебряный мяч» среди команд общеобразовательных организаций (в рамках общероссийского проекта «Волейбол – в школу»)
-          </label>
-        </div>
-        <div class="hidden" id="inputs2">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants2" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants2" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date2" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date2">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event3" onchange="toggleInputs(3)">
-          <label class="form-check-label" for="event3">
-            Всероссийские соревнования по легкоатлетическому четырехборью «Шиповка юных» среди обучающихся общеобразовательных организаций
-          </label>
-        </div>
-        <div class="hidden" id="inputs3">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants3" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants3" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date3" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date3">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event4" onchange="toggleInputs(4)">
-          <label class="form-check-label" for="event4">
-            Всероссийские соревнования по лыжным гонкам среди обучающихся общеобразовательных учреждений на призы газеты «Пионерская правда»
-          </label>
-        </div>
-        <div class="hidden" id="inputs4">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants4" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants4" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date4" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date4">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event5" onchange="toggleInputs(5)">
-          <label class="form-check-label" for="event5">
-            Всероссийские соревнования по мини-футболу (футзалу) среди команд общеобразовательных организаций (в рамках общероссийского проекта «Мини-футбол – в школу»)
-          </label>
-        </div>
-        <div class="hidden" id="inputs5">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants5" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants5" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date5" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date5">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event6" onchange="toggleInputs(6)">
-          <label class="form-check-label" for="event6">
-            Всероссийские соревнования юных футболистов «Кожаный мяч»
-          </label>
-        </div>
-        <div class="hidden" id="inputs6">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants6" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants6" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date6" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date6">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event7" onchange="toggleInputs(7)">
-          <label class="form-check-label" for="event7">
-            Всероссийские соревнования юных хоккеистов «Золотая шайба»
-          </label>
-        </div>
-        <div class="hidden" id="inputs7">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants7" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants7" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date7" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date7">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event8" onchange="toggleInputs(8)">
-          <label class="form-check-label" for="event8">
-            Открытые Всероссийские соревнования по шахматам «Белая ладья» среди команд общеобразовательных организаций
-          </label>
-        </div>
-        <div class="hidden" id="inputs8">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants8" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants8" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date8" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date8">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event9" onchange="toggleInputs(9)">
-          <label class="form-check-label" for="event9">
-            Спартакиада молодежи России допризывного возраста
-          </label>
-        </div>
-        <div class="hidden" id="inputs9">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants9" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants9" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date9" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date9">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event10" onchange="toggleInputs(10)">
-          <label class="form-check-label" for="event10">
-            Всероссийские спортивные соревнования школьников «Президентские состязания»
-          </label>
-        </div>
-        <div class="hidden" id="inputs10">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants10" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants10" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date10" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date10">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event11" onchange="toggleInputs(11)">
-          <label class="form-check-label" for="event11">
-            Всероссийские спортивные игры школьников «Президентские спортивные игры»
-          </label>
-        </div>
-        <div class="hidden" id="inputs11">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants11" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants11" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date11" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date11">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event12" onchange="toggleInputs(12)">
-          <label class="form-check-label" for="event12">
-            Всероссийские массовые соревнования по баскетболу «Оранжевый мяч»
-          </label>
-        </div>
-        <div class="hidden" id="inputs12">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants12" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants12" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date12" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date12">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event13" onchange="toggleInputs(13)">
-          <label class="form-check-label" for="event13">
-            Всероссийские спортивные игры школьных спортивных клубов
-          </label>
-        </div>
-        <div class="hidden" id="inputs13">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants13" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants13" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date13" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date13">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event14" onchange="toggleInputs(14)">
-          <label class="form-check-label" for="event14">
-            Открытые Всероссийские массовые соревнования по конькобежному спорту «Лед надежды нашей»
-          </label>
-        </div>
-        <div class="hidden" id="inputs14">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants14" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants14" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date14" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date14">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event15" onchange="toggleInputs(15)">
-          <label class="form-check-label" for="event15">
-            Всероссийский день бега «Кросс нации»
-          </label>
-        </div>
-        <div class="hidden" id="inputs15">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants15" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants15" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date15" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date15">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event16" onchange="toggleInputs(16)">
-          <label class="form-check-label" for="event16">
-            Всероссийский день ходьбы
-          </label>
-        </div>
-        <div class="hidden" id="inputs16">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants16" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants16" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date16" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date16">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event17" onchange="toggleInputs(17)">
-          <label class="form-check-label" for="event17">
-            Открытая Всероссийская массовая лыжная гонка «Лыжня России»
-          </label>
-        </div>
-        <div class="hidden" id="inputs17">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants17" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants17" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date17" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date17">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event18" onchange="toggleInputs(18)">
-          <label class="form-check-label" for="event18">
-            Всероссийские массовые соревнования по спортивному ориентированию «Российский Азимут»
-          </label>
-        </div>
-        <div class="hidden" id="inputs18">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants18" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants18" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date18" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date18">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event19" onchange="toggleInputs(19)">
-          <label class="form-check-label" for="event19">
-            Всероссийские массовые соревнования «Оздоровительный спорт – в каждую семью»
-          </label>
-        </div>
-        <div class="hidden" id="inputs19">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants19" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants19" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date19" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date19">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event20" onchange="toggleInputs(20)">
-          <label class="form-check-label" for="event20">
-            Всероссийская Спартакиада специальной олимпиады
-          </label>
-        </div>
-        <div class="hidden" id="inputs20">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants20" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants20" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date20" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date20">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event21" onchange="toggleInputs(21)">
-          <label class="form-check-label" for="event21">
-            Всероссийский день самбо
-          </label>
-        </div>
-        <div class="hidden" id="inputs21">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants21" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants21" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date21" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date21">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event22" onchange="toggleInputs(22)">
-          <label class="form-check-label" for="event22">
-            Всероссийская массовая велосипедная гонка
-          </label>
-        </div>
-        <div class="hidden" id="inputs22">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants22" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants22" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date22" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date22">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event23" onchange="toggleInputs(23)">
-          <label class="form-check-label" for="event23">
-            Фестиваль Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди обучающихся общеобразовательных организаций
-          </label>
-        </div>
-        <div class="hidden" id="inputs23">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants23" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants23" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date23" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date23">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event24" onchange="toggleInputs(24)">
-          <label class="form-check-label" for="event24">
-            Фестиваль Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди обучающихся образовательных организаций высшего образования
-          </label>
-        </div>
-        <div class="hidden" id="inputs24">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants24" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants24" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date24" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date24">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event25" onchange="toggleInputs(25)">
-          <label class="form-check-label" for="event25">
-            Фестиваль Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди семейных команд
-          </label>
-        </div>
-        <div class="hidden" id="inputs25">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants25" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants25" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date25" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date25">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event26" onchange="toggleInputs(26)">
-          <label class="form-check-label" for="event26">
-            Всероссийские соревнования по многоборьям Всероссийского физкультурно-спортивного комплекса «Готов к труду и обороне» (ГТО) среди граждан, проживающих в сельской местности
-          </label>
-        </div>
-        <div class="hidden" id="inputs26">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants26" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants26" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date26" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date26">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event27" onchange="toggleInputs(27)">
-          <label class="form-check-label" for="event27">
-            Всероссийская военно-патриотическая игра «Зарница»
-          </label>
-        </div>
-        <div class="hidden" id="inputs27">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants27" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants27" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date27" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date27">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event28" onchange="toggleInputs(28)">
-          <label class="form-check-label" for="event28">
-            Всероссийский проект «Вызов первых»
-          </label>
-        </div>
-        <div class="hidden" id="inputs28">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants28" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants28" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date28" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date28">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event29" onchange="toggleInputs(29)">
-          <label class="form-check-label" for="event29">
-            Турнир «Школьная баскетбольная лига 3х3 им. Кирилла Писклова»
-          </label>
-        </div>
-        <div class="hidden" id="inputs29">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants29" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants29" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date29" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date29">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event30" onchange="toggleInputs(30)">
-          <label class="form-check-label" for="event30">
-            Турнир по волейболу среди команд общеобразовательных организаций субъектов Российской Федерации
-          </label>
-        </div>
-        <div class="hidden" id="inputs30">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants30" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants30" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date30" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date30">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="event31" onchange="toggleInputs(31)">
-          <label class="form-check-label" for="event31">
-            Чемпионат Школьной баскетбольной лиги «КЭС-БАСКЕТ»
-          </label>
-        </div>
-        <div class="hidden" id="inputs31">
-          <div class="row g-3 align-items-center my-2">
-            <div class="col-auto">
-              <label for="participants31" class="col-form-label">Количество участников</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants31" min="0" max="10000" placeholder="Введите количество">
-            </div>
-            <div class="col-auto">
-              <label for="date31" class="col-form-label">Дата проведения</label>
-            </div>
-            <div class="col-auto">
-              <input type="date" class="form-control" id="date31">
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container mt-5">
+        <h2 class="mb-4">Опросник для сбора данных</h2>
+        <form id="surveyForm" method="POST" action="/block1">
 
-      <button type="submit" class="btn btn-secondary" name="action" value="back" id="backPageBtn">Назад</button>
-      <button type="submit" class="btn btn-primary" name="action" value="next" id="nextPageBtn">Далее</button>
-    </form>
-  </div>
-
-  <script>
-
-    function toggleInputs(eventId) {
-      const inputs = document.getElementById('inputs' + eventId);
-      if (inputs.style.display === "none" || inputs.style.display === "") {
-        inputs.style.display = "block";
-      } else {
-        inputs.style.display = "none";
-      }
-    }
-    function saveEventData() {
-      const eventData={};
-
-      document.querySelectorAll('.form-check-input').forEach((checkbox,index)=>{
-        const eventId = checkbox.id.replace('event', '');
-
-        const participants = document.getElementById('participants' + eventId)?.value;
-        const date = document.getElementById('date' + eventId)?.value || "Мероприятие не было выбрано";
-
-        eventData[`event${eventId}`] = {
-            participants: participants,
-            date: date
-        };
+            <div class="mb-3">
+                <label for="totalStudents" class="form-label">1. Сколько обучающихся всего в общеобразовательной
+                    организации?</label>
+                <input type="number" class="form-control" id="totalStudents" value="0" min="0" max="10000"
+                    placeholder="Введите количество обучающихся">
+            </div>
 
 
-      })
-  
-      localStorage.setItem('eventData', JSON.stringify(eventData));
+            <div class="mb-3">
+                <label class="form-label">2. Сколько обучающихся занимается на базе школьного спортивного клуба (ШСК)?
+                    Укажите численность обучающихся по классам:</label>
+                <div class="row">
+                    <div class="col">
+                        <label for="class1" class="form-label">1 класс</label>
+                        <input type="number" class="form-control" id="class1" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class2" class="form-label">2 класс</label>
+                        <input type="number" class="form-control" id="class2" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class3" class="form-label">3 класс</label>
+                        <input type="number" class="form-control" id="class3" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="class4" class="form-label">4 класс</label>
+                        <input type="number" class="form-control" id="class4" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class5" class="form-label">5 класс</label>
+                        <input type="number" class="form-control" id="class5" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class6" class="form-label">6 класс</label>
+                        <input type="number" class="form-control" id="class6" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="class7" class="form-label">7 класс</label>
+                        <input type="number" class="form-control" id="class7" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class8" class="form-label">8 класс</label>
+                        <input type="number" class="form-control" id="class8" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class9" class="form-label">9 класс</label>
+                        <input type="number" class="form-control" id="class9" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="class10" class="form-label">10 класс</label>
+                        <input type="number" class="form-control" id="class10" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                    <div class="col">
+                        <label for="class11" class="form-label">11 класс</label>
+                        <input type="number" class="form-control" id="class11" value="0" placeholder="0" min="0"
+                            max="10000">
+                    </div>
+                </div>
+            </div>
 
-    }
-    console.log(localStorage.getItem('eventData'))
 
-    document.getElementById('backPageBtn').addEventListener('click', saveEventData);
-    document.getElementById('nextPageBtn').addEventListener('click', saveEventData);
+            <div class="mb-3">
+                <label class="form-label">3. Виды спорта, развиваемые на базе ШСК. Выберите нужные виды и укажите
+                    количество занимающихся:</label>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="basketball"
+                        id="basketballCheck">
+                    <label class="form-check-label" for="basketballCheck">Баскетбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="basketballCount"
+                        placeholder="Численность занимающихся баскетболом" min="0" max="10000">
+                </div>
 
-    function loadEventData() {
-      const savedData = localStorage.getItem('eventData');
-      if (savedData) {
-          const eventData = JSON.parse(savedData);
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="boxing" id="boxingCheck">
+                    <label class="form-check-label" for="boxingCheck">Бокс</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="boxingCount"
+                        placeholder="Численность занимающихся боксом" min="0" max="10000">
+                </div>
 
-          Object.keys(eventData).forEach((eventKey) => {
-              const eventId = eventKey.replace('event', '');
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="volleyball"
+                        id="volleyballCheck">
+                    <label class="form-check-label" for="volleyballCheck">Волейбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="volleyballCount"
+                        placeholder="Численность занимающихся волейболом" min="0" max="10000">
+                </div>
 
-              const checkbox = document.getElementById('event' + eventId);
-              if (checkbox) {
-                  checkbox.checked = eventData[eventKey].participants !== "";
-                  toggleInputs(eventId);
-              }
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="darts" id="dartsCheck">
+                    <label class="form-check-label" for="dartsCheck">Дартс</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="dartsCount"
+                        placeholder="Численность занимающихся дартсом" min="0" max="10000">
+                </div>
 
-              const participantsInput = document.getElementById('participants' + eventId);
-              if (participantsInput) {
-                  participantsInput.value = eventData[eventKey].participants;
-              }
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="skiing" id="skiingCheck">
+                    <label class="form-check-label" for="skiingCheck">Лыжные гонки</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="skiingCount"
+                        placeholder="Численность занимающихся лыжными гонками" min="0" max="10000">
+                </div>
 
-              const dateInput = document.getElementById('date' + eventId);
-              if (dateInput) {
-                  dateInput.value = eventData[eventKey].date === "Мероприятие не было выбрано" ? "" : eventData[eventKey].date;
-              }
-          });
-      }
-  }
-  function validateInputValue(input) {
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="tableTennis"
+                        id="tableTennisCheck">
+                    <label class="form-check-label" for="tableTennisCheck">Настольный теннис</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="tableTennisCount"
+                        placeholder="Численность занимающихся настольным теннисом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sambo" id="samboCheck">
+                    <label class="form-check-label" for="samboCheck">Самбо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="samboCount"
+                        placeholder="Численность занимающихся самбо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="athletics"
+                        id="athleticsCheck">
+                    <label class="form-check-label" for="athleticsCheck">Легкая атлетика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="athleticsCount"
+                        placeholder="Численность занимающихся легкой атлетикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="chess" id="chessCheck">
+                    <label class="form-check-label" for="chessCheck">Шахматы</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="chessCount"
+                        placeholder="Численность занимающихся шахматами" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="football" id="footballCheck">
+                    <label class="form-check-label" for="footballCheck">Футбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="footballCount"
+                        placeholder="Численность занимающихся футболом" min="0" max="10000">
+                </div>
+            </div>
+
+
+            <button type="button" class="btn btn-secondary mb-3" id="otherSportsBtn">Другое</button>
+
+
+            <div id="otherSports" class="hidden">
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="aviamodeling"
+                        id="aviamodelingCheck">
+                    <label class="form-check-label" for="aviamodelingCheck">Авиамодельный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="aviamodelingCount"
+                        placeholder="Численность занимающихся авиамодельным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="autosport"
+                        id="autosportCheck">
+                    <label class="form-check-label" for="autosportCheck">Автомобильный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="autosportCount"
+                        placeholder="Численность занимающихся автомобильным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="aikido" id="aikidoCheck">
+                    <label class="form-check-label" for="aikidoCheck">Айкидо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="aikidoCount"
+                        placeholder="Численность занимающихся айкидо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="acrobatics"
+                        id="acrobaticsCheck">
+                    <label class="form-check-label" for="acrobaticsCheck">Акробатический рок-н-ролл</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="acrobaticsCount"
+                        placeholder="Численность занимающихся акробатическим рок-н-роллом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="alpinism" id="alpinismCheck">
+                    <label class="form-check-label" for="alpinismCheck">Альпинизм</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="alpinismCount"
+                        placeholder="Численность занимающихся альпинизмом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="americanFootball"
+                        id="americanFootballCheck">
+                    <label class="form-check-label" for="americanFootballCheck">Американский футбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="americanFootballCount"
+                        placeholder="Численность занимающихся американским футболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="armwrestling"
+                        id="armwrestlingCheck">
+                    <label class="form-check-label" for="armwrestlingCheck">Армреслинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="armwrestlingCount"
+                        placeholder="Численность занимающихся армреслингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="badminton"
+                        id="badmintonCheck">
+                    <label class="form-check-label" for="badmintonCheck">Бадминтон</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="badmintonCount"
+                        placeholder="Численность занимающихся бадминтоном" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="baseball" id="baseballCheck">
+                    <label class="form-check-label" for="baseballCheck">Бейсбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="baseballCount"
+                        placeholder="Численность занимающихся бейсболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="biathlon" id="biathlonCheck">
+                    <label class="form-check-label" for="biathlonCheck">Биатлон</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="biathlonCount"
+                        placeholder="Численность занимающихся биатлоном" min="0" max="10000">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="billiards"
+                        id="billiardsCheck">
+                    <label class="form-check-label" for="billiardsCheck">Бильярдный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="billiardsCount"
+                        placeholder="Численность занимающихся бильярдным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="bobsleigh"
+                        id="bobsleighCheck">
+                    <label class="form-check-label" for="bobsleighCheck">Бобслей</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="bobsleighCount"
+                        placeholder="Численность занимающихся бобслеем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="bodybuilding"
+                        id="bodybuildingCheck">
+                    <label class="form-check-label" for="bodybuildingCheck">Бодибилдинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="bodybuildingCount"
+                        placeholder="Численность занимающихся бодибилдингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="beltWrestling"
+                        id="beltWrestlingCheck">
+                    <label class="form-check-label" for="beltWrestlingCheck">Борьба на поясах</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="beltWrestlingCount"
+                        placeholder="Численность занимающихся борьбой на поясах" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="bowling" id="bowlingCheck">
+                    <label class="form-check-label" for="bowlingCheck">Боулинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="bowlingCount"
+                        placeholder="Численность занимающихся боулингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="cycling" id="cyclingCheck">
+                    <label class="form-check-label" for="cyclingCheck">Велосипедный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="cyclingCount"
+                        placeholder="Численность занимающихся велосипедным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="helicopterSport"
+                        id="helicopterSportCheck">
+                    <label class="form-check-label" for="helicopterSportCheck">Вертолетный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="helicopterSportCount"
+                        placeholder="Численность занимающихся вертолетным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="waterMotorSport"
+                        id="waterMotorSportCheck">
+                    <label class="form-check-label" for="waterMotorSportCheck">Водно-моторный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="waterMotorSportCount"
+                        placeholder="Численность занимающихся водно-моторным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="waterPolo"
+                        id="waterPoloCheck">
+                    <label class="form-check-label" for="waterPoloCheck">Водное поло</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="waterPoloCount"
+                        placeholder="Численность занимающихся водным поло" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="waterSkiing"
+                        id="waterSkiingCheck">
+                    <label class="form-check-label" for="waterSkiingCheck">Воднолыжный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="waterSkiingCount"
+                        placeholder="Численность занимающихся воднолыжным спортом" min="0" max="10000">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="ballooning"
+                        id="ballooningCheck">
+                    <label class="form-check-label" for="ballooningCheck">Воздухоплавательный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="ballooningCount"
+                        placeholder="Численность занимающихся воздухоплавательным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="workout" id="workoutCheck">
+                    <label class="form-check-label" for="workoutCheck">Воздушно-силовая атлетика (воркаут)</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="workoutCount"
+                        placeholder="Численность занимающихся воркаутом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="martialArts"
+                        id="martialArtsCheck">
+                    <label class="form-check-label" for="martialArtsCheck">Восточное боевое единоборство</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="martialArtsCount"
+                        placeholder="Численность занимающихся восточными боевыми единоборствами" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="karate" id="styleKarateCheck">
+                    <label class="form-check-label" for="styleKarateCheck">Всестилевое каратэ</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="styleKarateCount"
+                        placeholder="Численность занимающихся всестилевым каратэ" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="handball" id="handballCheck">
+                    <label class="form-check-label" for="handballCheck">Гандбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="handballCount"
+                        placeholder="Численность занимающихся гандболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="kettlebell"
+                        id="kettlebellCheck">
+                    <label class="form-check-label" for="kettlebellCheck">Гиревой спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kettlebellCount"
+                        placeholder="Численность занимающихся гиревым спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="go" id="goCheck">
+                    <label class="form-check-label" for="goCheck">Го</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="goCount"
+                        placeholder="Численность занимающихся го" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="golf" id="golfCheck">
+                    <label class="form-check-label" for="golfCheck">Гольф</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="golfCount"
+                        placeholder="Численность занимающихся гольфом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="obstacleRacing"
+                        id="obstacleRacingCheck">
+                    <label class="form-check-label" for="obstacleRacingCheck">Гонки с препятствиями</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="obstacleRacingCount"
+                        placeholder="Численность занимающихся гонками с препятствиями" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="skiing"
+                        id="mountainSkiingCheck">
+                    <label class="form-check-label" for="mountainSkiingCheck">Горнолыжный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="mountainSkiingCount"
+                        placeholder="Численность занимающихся горнолыжным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="gorodki" id="gorodkiCheck">
+                    <label class="form-check-label" for="gorodkiCheck">Городошный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="gorodkiCount"
+                        placeholder="Численность занимающихся городошным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="canoeing" id="canoeingCheck">
+                    <label class="form-check-label" for="canoeingCheck">Гребля на байдарках и каноэ</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="canoeingCount"
+                        placeholder="Численность занимающихся греблей на байдарках и каноэ" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="slalom" id="slalomCheck">
+                    <label class="form-check-label" for="slalomCheck">Гребля слалом</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="slalomCount"
+                        placeholder="Численность занимающихся греблей слалом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="rowing" id="rowingCheck">
+                    <label class="form-check-label" for="rowingCheck">Гребной спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="rowingCount"
+                        placeholder="Численность занимающихся гребным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="jiuJitsu" id="jiuJitsuCheck">
+                    <label class="form-check-label" for="jiuJitsuCheck">Джиу-джитсу</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="jiuJitsuCount"
+                        placeholder="Численность занимающихся джиу-джитсу" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="judo" id="judoCheck">
+                    <label class="form-check-label" for="judoCheck">Дзюдо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="judoCount"
+                        placeholder="Численность занимающихся дзюдо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sledDog" id="sledDogCheck">
+                    <label class="form-check-label" for="sledDogCheck">Ездовой спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sledDogCount"
+                        placeholder="Численность занимающихся ездовым спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="karate" id="karateCheck">
+                    <label class="form-check-label" for="karateCheck">Каратэ</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="karateCount"
+                        placeholder="Численность занимающихся каратэ" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="kendo" id="kendoCheck">
+                    <label class="form-check-label" for="kendoCheck">Кендо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kendoCount"
+                        placeholder="Численность занимающихся кендо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="curling" id="curlingCheck">
+                    <label class="form-check-label" for="curlingCheck">Керлинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="curlingCount"
+                        placeholder="Численность занимающихся керлингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="kickboxing"
+                        id="kickboxingCheck">
+                    <label class="form-check-label" for="kickboxingCheck">Кикбоксинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kickboxingCount"
+                        placeholder="Численность занимающихся кикбоксингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="dogSport" id="dogSportCheck">
+                    <label class="form-check-label" for="dogSportCheck">Кинологический спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="dogSportCount"
+                        placeholder="Численность занимающихся кинологическим спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="kyokushin"
+                        id="kyokushinCheck">
+                    <label class="form-check-label" for="kyokushinCheck">Киокусинкай</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kyokushinCount"
+                        placeholder="Численность занимающихся киокусинкай" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="kiokushin"
+                        id="kiokushinCheck">
+                    <label class="form-check-label" for="kiokushinCheck">Киокушин</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kiokushinCount"
+                        placeholder="Численность занимающихся киокушином" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="esports" id="esportsCheck">
+                    <label class="form-check-label" for="esportsCheck">Компьютерный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="esportsCount"
+                        placeholder="Численность занимающихся компьютерным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="equestrian"
+                        id="equestrianCheck">
+                    <label class="form-check-label" for="equestrianCheck">Конный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="equestrianCount"
+                        placeholder="Численность занимающихся конным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="speedSkating"
+                        id="speedSkatingCheck">
+                    <label class="form-check-label" for="speedSkatingCheck">Конькобежный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="speedSkatingCount"
+                        placeholder="Численность занимающихся конькобежным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="koresh" id="koreshCheck">
+                    <label class="form-check-label" for="koreshCheck">Кореш</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="koreshCount"
+                        placeholder="Численность занимающихся корешом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="kudo" id="kudoCheck">
+                    <label class="form-check-label" for="kudoCheck">Кудо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kudoCount"
+                        placeholder="Численность занимающихся кудо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="lapta" id="laptaCheck">
+                    <label class="form-check-label" for="laptaCheck">Лапта</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="laptaCount"
+                        placeholder="Численность занимающихся лаптой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="nordicCombined"
+                        id="nordicCombinedCheck">
+                    <label class="form-check-label" for="nordicCombinedCheck">Лыжное двоеборье</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="nordicCombinedCount"
+                        placeholder="Численность занимающихся лыжным двоеборьем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="navalPentathlon"
+                        id="navalPentathlonCheck">
+                    <label class="form-check-label" for="navalPentathlonCheck">Морское многоборье</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="navalPentathlonCount"
+                        placeholder="Численность занимающихся морским многоборьем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="motorcycleSport"
+                        id="motorcycleSportCheck">
+                    <label class="form-check-label" for="motorcycleSportCheck">Мотоциклетный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="motorcycleSportCount"
+                        placeholder="Численность занимающихся мотоциклетным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="muayThai" id="muayThaiCheck">
+                    <label class="form-check-label" for="muayThaiCheck">Муайтай</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="muayThaiCount"
+                        placeholder="Численность занимающихся муайтай" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="parachuting"
+                        id="parachutingCheck">
+                    <label class="form-check-label" for="parachutingCheck">Парашютный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="parachutingCount"
+                        placeholder="Численность занимающихся парашютным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sailing" id="sailingCheck">
+                    <label class="form-check-label" for="sailingCheck">Парусный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sailingCount"
+                        placeholder="Численность занимающихся парусным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="powerlifting"
+                        id="powerliftingCheck">
+                    <label class="form-check-label" for="powerliftingCheck">Пауэрлифтинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="powerliftingCount"
+                        placeholder="Численность занимающихся пауэрлифтингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="tugOfWar" id="tugOfWarCheck">
+                    <label class="form-check-label" for="tugOfWarCheck">Перетягивание каната</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="tugOfWarCount"
+                        placeholder="Численность занимающихся перетягиванием каната" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="swimming" id="swimmingCheck">
+                    <label class="form-check-label" for="swimmingCheck">Плавание</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="swimmingCount"
+                        placeholder="Численность занимающихся плаванием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="gliding" id="glidingCheck">
+                    <label class="form-check-label" for="glidingCheck">Планерный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="glidingCount"
+                        placeholder="Численность занимающихся планерным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="underwaterSport"
+                        id="underwaterSportCheck">
+                    <label class="form-check-label" for="underwaterSportCheck">Подводный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="underwaterSportCount"
+                        placeholder="Численность занимающихся подводным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="polyathlon"
+                        id="polyathlonCheck">
+                    <label class="form-check-label" for="polyathlonCheck">Полиатлон</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="polyathlonCount"
+                        placeholder="Численность занимающихся полиатлоном" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="practicalShooting"
+                        id="practicalShootingCheck">
+                    <label class="form-check-label" for="practicalShootingCheck">Практическая стрельба</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="practicalShootingCount"
+                        placeholder="Численность занимающихся практической стрельбой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="diving" id="divingCheck">
+                    <label class="form-check-label" for="divingCheck">Прыжки в воду</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="divingCount"
+                        placeholder="Численность занимающихся прыжками в воду" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="trampoline"
+                        id="trampolineCheck">
+                    <label class="form-check-label" for="trampolineCheck">Прыжки на батуте</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="trampolineCount"
+                        placeholder="Численность занимающихся прыжками на батуте" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="skiJumping"
+                        id="skiJumpingCheck">
+                    <label class="form-check-label" for="skiJumpingCheck">Прыжки на лыжах с трамплина</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="skiJumpingCount"
+                        placeholder="Численность занимающихся прыжками на лыжах с трамплина" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="targetShooting"
+                        id="targetShootingCheck">
+                    <label class="form-check-label" for="targetShootingCheck">Пулевая стрельба</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="targetShootingCount"
+                        placeholder="Численность занимающихся пулевой стрельбой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="paintball"
+                        id="paintballCheck">
+                    <label class="form-check-label" for="paintballCheck">Пэйнтбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="paintballCount"
+                        placeholder="Численность занимающихся пэйнтболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="radioSport"
+                        id="radioSportCheck">
+                    <label class="form-check-label" for="radioSportCheck">Радиоспорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="radioSportCount"
+                        placeholder="Численность занимающихся радиоспортом" min="0" max="10000">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="rafting" id="raftingCheck">
+                    <label class="form-check-label" for="raftingCheck">Рафтинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="raftingCount"
+                        placeholder="Численность занимающихся рафтингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="rugby" id="rugbyCheck">
+                    <label class="form-check-label" for="rugbyCheck">Регби</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="rugbyCount"
+                        placeholder="Численность занимающихся регби" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="rollerSport"
+                        id="rollerSportCheck">
+                    <label class="form-check-label" for="rollerSportCheck">Роллер спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="rollerSportCount"
+                        placeholder="Численность занимающихся роллер спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="ropeSkipping"
+                        id="ropeSkippingCheck">
+                    <label class="form-check-label" for="ropeSkippingCheck">Роуп скиппинг (спортивная скакалка)</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="ropeSkippingCount"
+                        placeholder="Численность занимающихся роуп скиппингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="handToHandCombat"
+                        id="handToHandCombatCheck">
+                    <label class="form-check-label" for="handToHandCombatCheck">Рукопашный бой</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="handToHandCombatCount"
+                        placeholder="Численность занимающихся рукопашным боем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="fishingSport"
+                        id="fishingSportCheck">
+                    <label class="form-check-label" for="fishingSportCheck">Рыболовный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="fishingSportCount"
+                        placeholder="Численность занимающихся рыболовным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="savate" id="savateCheck">
+                    <label class="form-check-label" for="savateCheck">Сават</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="savateCount"
+                        placeholder="Численность занимающихся саватом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="airplaneSport"
+                        id="airplaneSportCheck">
+                    <label class="form-check-label" for="airplaneSportCheck">Самолетный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="airplaneSportCount"
+                        placeholder="Численность занимающихся самолетным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="luge" id="lugeCheck">
+                    <label class="form-check-label" for="lugeCheck">Санный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="lugeCount"
+                        placeholder="Численность занимающихся санным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="northernPentathlon"
+                        id="northernPentathlonCheck">
+                    <label class="form-check-label" for="northernPentathlonCheck">Северное многоборье</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="northernPentathlonCount"
+                        placeholder="Численность занимающихся северным многоборьем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="surfing" id="surfingCheck">
+                    <label class="form-check-label" for="surfingCheck">Серфинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="surfingCount"
+                        placeholder="Численность занимающихся серфингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="synchronizedSwimming"
+                        id="synchronizedSwimmingCheck">
+                    <label class="form-check-label" for="synchronizedSwimmingCheck">Синхронное плавание</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="synchronizedSwimmingCount"
+                        placeholder="Численность занимающихся синхронным плаванием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="rockClimbing"
+                        id="rockClimbingCheck">
+                    <label class="form-check-label" for="rockClimbingCheck">Скалолазание</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="rockClimbingCount"
+                        placeholder="Численность занимающихся скалолазанием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="squash" id="squashCheck">
+                    <label class="form-check-label" for="squashCheck">Сквош</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="squashCount"
+                        placeholder="Численность занимающихся сквошем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="skateboarding"
+                        id="skateboardingCheck">
+                    <label class="form-check-label" for="skateboardingCheck">Скейтбординг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="skateboardingCount"
+                        placeholder="Численность занимающихся скейтбордингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="mma" id="mmaCheck">
+                    <label class="form-check-label" for="mmaCheck">Смешанное боевое единоборство (ММА)</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="mmaCount"
+                        placeholder="Численность занимающихся ММА" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="snowboarding"
+                        id="snowboardingCheck">
+                    <label class="form-check-label" for="snowboardingCheck">Сноуборд</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="snowboardingCount"
+                        placeholder="Численность занимающихся сноубордом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="modernPentathlon"
+                        id="modernPentathlonCheck">
+                    <label class="form-check-label" for="modernPentathlonCheck">Современное пятиборье</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="modernPentathlonCount"
+                        placeholder="Численность занимающихся современным пятиборьем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="softball" id="softballCheck">
+                    <label class="form-check-label" for="softballCheck">Софтбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="softballCount"
+                        placeholder="Численность занимающихся софтболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="ultralightAviation"
+                        id="ultralightAviationCheck">
+                    <label class="form-check-label" for="ultralightAviationCheck">Спорт сверхлегкой авиации</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="ultralightAviationCount"
+                        placeholder="Численность занимающихся спортом сверхлегкой авиации" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportCynology"
+                        id="sportCynologyCheck">
+                    <label class="form-check-label" for="sportCynologyCheck">Спортивно-прикладное собаководство</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportCynologyCount"
+                        placeholder="Численность занимающихся спортивно-прикладным собаководством" min="0" max="10000">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="knifeThrowing"
+                        id="knifeThrowingCheck">
+                    <label class="form-check-label" for="knifeThrowingCheck">Спортивное метание ножа</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="knifeThrowingCount"
+                        placeholder="Численность занимающихся спортивным метанием ножа" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportsWrestling"
+                        id="sportsWrestlingCheck">
+                    <label class="form-check-label" for="sportsWrestlingCheck">Спортивная борьба</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportsWrestlingCount"
+                        placeholder="Численность занимающихся спортивной борьбой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="deafSports"
+                        id="deafSportsCheck">
+                    <label class="form-check-label" for="deafSportsCheck">Спорт глухих</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="deafSportsCount"
+                        placeholder="Численность занимающихся спортом глухих" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox"
+                        value="intellectualDisabilitiesSports" id="intellectualDisabilitiesSportsCheck">
+                    <label class="form-check-label" for="intellectualDisabilitiesSportsCheck">Спорт лиц с
+                        интеллектуальными нарушениями</label>
+                    <input type="number" value="0" class="form-control hidden mt-2"
+                        id="intellectualDisabilitiesSportsCount"
+                        placeholder="Численность занимающихся спортом лиц с интеллектуальными нарушениями" min="0"
+                        max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="physicalDisabilitySports"
+                        id="physicalDisabilitySportsCheck">
+                    <label class="form-check-label" for="physicalDisabilitySportsCheck">Спорт лиц с поражением
+                        ОДА</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="physicalDisabilitySportsCount"
+                        placeholder="Численность занимающихся спортом лиц с поражением ОДА" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="blindSports"
+                        id="blindSportsCheck">
+                    <label class="form-check-label" for="blindSportsCheck">Спорт слепых</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="blindSportsCount"
+                        placeholder="Численность занимающихся спортом слепых" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportAcrobatics"
+                        id="sportAcrobaticsCheck">
+                    <label class="form-check-label" for="sportAcrobaticsCheck">Спортивная акробатика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportAcrobaticsCount"
+                        placeholder="Численность занимающихся спортивной акробатикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportAerobics"
+                        id="sportAerobicsCheck">
+                    <label class="form-check-label" for="sportAerobicsCheck">Спортивная аэробика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportAerobicsCount"
+                        placeholder="Численность занимающихся спортивной аэробикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportGymnastics"
+                        id="sportGymnasticsCheck">
+                    <label class="form-check-label" for="sportGymnasticsCheck">Спортивная гимнастика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportGymnasticsCount"
+                        placeholder="Численность занимающихся спортивной гимнастикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportOrienteering"
+                        id="sportOrienteeringCheck">
+                    <label class="form-check-label" for="sportOrienteeringCheck">Спортивное ориентирование</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportOrienteeringCount"
+                        placeholder="Численность занимающихся спортивным ориентированием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportProgramming"
+                        id="sportProgrammingCheck">
+                    <label class="form-check-label" for="sportProgrammingCheck">Спортивное программирование</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportProgrammingCount"
+                        placeholder="Численность занимающихся спортивным программированием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sportTourism"
+                        id="sportTourismCheck">
+                    <label class="form-check-label" for="sportTourismCheck">Спортивный туризм</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sportTourismCount"
+                        placeholder="Численность занимающихся спортивным туризмом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="standShooting"
+                        id="standShootingCheck">
+                    <label class="form-check-label" for="standShootingCheck">Стендовая стрельба</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="standShootingCount"
+                        placeholder="Численность занимающихся стендовой стрельбой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="airsoft" id="airsoftCheck">
+                    <label class="form-check-label" for="airsoftCheck">Страйкбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="airsoftCount"
+                        placeholder="Численность занимающихся страйкболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="crossbowShooting"
+                        id="crossbowShootingCheck">
+                    <label class="form-check-label" for="crossbowShootingCheck">Стрельба из арбалета</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="crossbowShootingCount"
+                        placeholder="Численность занимающихся стрельбой из арбалета" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="archery" id="archeryCheck">
+                    <label class="form-check-label" for="archeryCheck">Стрельба из лука</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="archeryCount"
+                        placeholder="Численность занимающихся стрельбой из лука" min="0" max="10000">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="modelSailingSport"
+                        id="modelSailingSportCheck">
+                    <label class="form-check-label" for="modelSailingSportCheck">Судомодельный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="modelSailingSportCount"
+                        placeholder="Численность занимающихся судомодельным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="sumo" id="sumoCheck">
+                    <label class="form-check-label" for="sumoCheck">Сумо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="sumoCount"
+                        placeholder="Численность занимающихся сумо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="danceSport"
+                        id="danceSportCheck">
+                    <label class="form-check-label" for="danceSportCheck">Танцевальный спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="danceSportCount"
+                        placeholder="Численность занимающихся танцевальным спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="tennis" id="tennisCheck">
+                    <label class="form-check-label" for="tennisCheck">Теннис</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="tennisCount"
+                        placeholder="Численность занимающихся теннисом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="triathlon"
+                        id="triathlonCheck">
+                    <label class="form-check-label" for="triathlonCheck">Триатлон</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="triathlonCount"
+                        placeholder="Численность занимающихся триатлоном" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="taekwondo"
+                        id="taekwondoCheck">
+                    <label class="form-check-label" for="taekwondoCheck">Тхэквондо</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="taekwondoCount"
+                        placeholder="Численность занимающихся тхэквондо" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="weightlifting"
+                        id="weightliftingCheck">
+                    <label class="form-check-label" for="weightliftingCheck">Тяжелая атлетика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="weightliftingCount"
+                        placeholder="Численность занимающихся тяжелой атлетикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="universalFighting"
+                        id="universalFightingCheck">
+                    <label class="form-check-label" for="universalFightingCheck">Универсальный бой</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="universalFightingCount"
+                        placeholder="Численность занимающихся универсальным боем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="wushu" id="wushuCheck">
+                    <label class="form-check-label" for="wushuCheck">Ушу</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="wushuCount"
+                        placeholder="Численность занимающихся ушу" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="fencing" id="fencingCheck">
+                    <label class="form-check-label" for="fencingCheck">Фехтование</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="fencingCount"
+                        placeholder="Численность занимающихся фехтованием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="figureSkating"
+                        id="figureSkatingCheck">
+                    <label class="form-check-label" for="figureSkatingCheck">Фигурное катание на коньках</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="figureSkatingCount"
+                        placeholder="Численность занимающихся фигурным катанием на коньках" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="fitnessAerobics"
+                        id="fitnessAerobicsCheck">
+                    <label class="form-check-label" for="fitnessAerobicsCheck">Фитнес-аэробика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="fitnessAerobicsCount"
+                        placeholder="Численность занимающихся фитнес-аэробикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="floorball"
+                        id="floorballCheck">
+                    <label class="form-check-label" for="floorballCheck">Флорбол</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="floorballCount"
+                        placeholder="Численность занимающихся флорболом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="freestyle"
+                        id="freestyleCheck">
+                    <label class="form-check-label" for="freestyleCheck">Фристайл</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="freestyleCount"
+                        placeholder="Численность занимающихся фристайлом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="functionalMultisport"
+                        id="functionalMultisportCheck">
+                    <label class="form-check-label" for="functionalMultisportCheck">Функциональное многоборье</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="functionalMultisportCount"
+                        placeholder="Численность занимающихся функциональным многоборием" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="cpFootball"
+                        id="cpFootballCheck">
+                    <label class="form-check-label" for="cpFootballCheck">Футбол лиц с заболеванием ЦП</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="cpFootballCount"
+                        placeholder="Численность занимающихся футболом лиц с заболеванием ЦП" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="hockey" id="hockeyCheck">
+                    <label class="form-check-label" for="hockeyCheck">Хоккей</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="hockeyCount"
+                        placeholder="Численность занимающихся хоккеем" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="fieldHockey"
+                        id="fieldHockeyCheck">
+                    <label class="form-check-label" for="fieldHockeyCheck">Хоккей на траве</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="fieldHockeyCount"
+                        placeholder="Численность занимающихся хоккеем на траве" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="ballHockey"
+                        id="ballHockeyCheck">
+                    <label class="form-check-label" for="ballHockeyCheck">Хоккей с мячом</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="ballHockeyCount"
+                        placeholder="Численность занимающихся хоккеем с мячом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="rhythmicGymnastics"
+                        id="rhythmicGymnasticsCheck">
+                    <label class="form-check-label" for="rhythmicGymnasticsCheck">Художественная гимнастика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="rhythmicGymnasticsCount"
+                        placeholder="Численность занимающихся художественной гимнастикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="cheerleading"
+                        id="cheerleadingCheck">
+                    <label class="form-check-label" for="cheerleadingCheck">Чир спорт</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="cheerleadingCount"
+                        placeholder="Численность занимающихся чир спортом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="checkers" id="checkersCheck">
+                    <label class="form-check-label" for="checkersCheck">Шашки</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="checkersCount"
+                        placeholder="Численность занимающихся шашками" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="aestheticGymnastics"
+                        id="aestheticGymnasticsCheck">
+                    <label class="form-check-label" for="aestheticGymnasticsCheck">Эстетическая гимнастика</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="aestheticGymnasticsCount"
+                        placeholder="Численность занимающихся эстетической гимнастикой" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="keresh" id="kereshCheck">
+                    <label class="form-check-label" for="kereshCheck">Керешу</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="kereshCount"
+                        placeholder="Численность занимающихся керешу" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="masWrestling"
+                        id="masWrestlingCheck">
+                    <label class="form-check-label" for="masWrestlingCheck">Мас-рестлинг</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="masWrestlingCount"
+                        placeholder="Численность занимающихся мас-рестлингом" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="tavreli" id="tavreliCheck">
+                    <label class="form-check-label" for="tavreliCheck">Таврели</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="tavreliCount"
+                        placeholder="Численность занимающихся таврели" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="hapsagay" id="hapsagayCheck">
+                    <label class="form-check-label" for="hapsagayCheck">Хапсагай</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="hapsagayCount"
+                        placeholder="Численность занимающихся хапсагай" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="khuresh" id="khureshCheck">
+                    <label class="form-check-label" for="khureshCheck">Хуреш</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="khureshCount"
+                        placeholder="Численность занимающихся хуреш" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="shodsanlat"
+                        id="shodsanlatCheck">
+                    <label class="form-check-label" for="shodsanlatCheck">Шодсанлат</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="shodsanlatCount"
+                        placeholder="Численность занимающихся шодсанлат" min="0" max="10000">
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input sport-checkbox" type="checkbox" value="yakutJumping"
+                        id="yakutJumpingCheck">
+                    <label class="form-check-label" for="yakutJumpingCheck">Якутские национальные прыжки</label>
+                    <input type="number" value="0" class="form-control hidden mt-2" id="yakutJumpingCount"
+                        placeholder="Численность занимающихся якутскими национальными прыжками" min="0" max="10000">
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" name="action" value="next" id="nextPageBtn">Далее</button>
+        </form>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function saveFormData() {
+            const totalStudentsInput = document.getElementById('totalStudents');
+            const totalStudentsValue = parseInt(totalStudentsInput.value, 10);
+
+            if (totalStudentsValue < 0 || totalStudentsValue > 10000) {
+                alert(`Пожалуйста, проверьте данные. Они должны быть в диапазоне от 0 до 10000`);
+                return;
+            }
+
+
+            const formData = {
+                totalStudents: totalStudentsValue,
+                sports: {}
+            };
+
+            const classFields = [
+                'class1', 'class2', 'class3', 'class4', 'class5',
+                'class6', 'class7', 'class8', 'class9', 'class10', 'class11'
+            ];
+
+            classFields.forEach(classId => {
+                const classValue = parseInt(document.getElementById(classId).value, 10) || 0;
+
+                if (classValue < 0 || classValue > 10000) {
+                    alert(`Пожалуйста, проверьте данные. Они должны быть в диапазоне от 0 до 10000`);
+                    return;
+                }
+
+                formData[classId] = classValue;
+            })
+
+
+            const checkboxes = document.querySelectorAll('.sport-checkbox');
+
+            checkboxes.forEach(checkbox => {
+                const sportName = checkbox.value;
+
+                const countInput = parseInt(document.getElementById(`${sportName}Count`).value);
+
+                formData.sports[sportName] = {
+                    count: countInput
+                }
+
+                if (countInput < 0 || countInput > 10000) {
+                    alert('Введите корректное значение от 0 до 10000');
+                }
+            })
+            console.log("Сохраненные данные формы:", formData);
+
+            localStorage.setItem('formData', JSON.stringify(formData))
+            console.log(localStorage.getItem('formData'))
+        }
+
+        document.getElementById('nextPageBtn').addEventListener('click', saveFormData)
+
+        console.log(localStorage.getItem('formData'))
+
+        document.querySelectorAll('.sport-checkbox').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                const countField = document.getElementById(this.value + 'Count');
+                if (this.checked) {
+                    countField.classList.remove('hidden');
+                    countField.setAttribute('required', 'required');
+                } else {
+                    countField.classList.add('hidden');
+                    countField.removeAttribute('required');
+                    countField.value = '';
+                }
+            });
+        });
+
+        function loadFormData() {
+            const savedData = JSON.parse(localStorage.getItem('formData'));
+            if (!savedData) return;
+
+            const totalStudentsInput = document.getElementById('totalStudents');
+            if (totalStudentsInput && savedData.totalStudents !== undefined) {
+                totalStudentsInput.value = savedData.totalStudents;
+            }
+
+            const classFields = [
+                'class1', 'class2', 'class3', 'class4', 'class5',
+                'class6', 'class7', 'class8', 'class9', 'class10', 'class11'
+            ];
+
+            classFields.forEach(classId => {
+                const classInput = document.getElementById(classId);
+                if (classInput && savedData[classId] !== undefined) {
+                    classInput.value = savedData[classId];
+                }
+            });
+
+            const checkboxes = document.querySelectorAll('.sport-checkbox');
+            checkboxes.forEach(checkbox => {
+                const sportName = checkbox.value;
+                const sportData = savedData.sports[sportName];
+                if (sportData) {
+                    checkbox.checked = sportData.checked;
+                    const countInput = document.getElementById(`${sportName}Count`);
+                    if (countInput) {
+                        countInput.value = sportData.count;
+                        if (sportData.checked) {
+                            countInput.classList.remove('hidden');
+                            countInput.setAttribute('required', 'required');
+                        } else {
+                            countInput.classList.add('hidden');
+                            countInput.removeAttribute('required');
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function validateInputValue(input) {
             const value = input.value;
 
             if (/^0\d/.test(value)) {
@@ -860,14 +1345,24 @@
                 input.value = "";
             }
         }
-    document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
-        input.addEventListener('input', () => validateInputValue(input));
-    });
 
+        document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
+            input.addEventListener('input', () => validateInputValue(input));
+        });
 
+        const otherSportsBtn = document.getElementById('otherSportsBtn');
+        const otherSportsDiv = document.getElementById('otherSports');
 
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        otherSportsBtn.addEventListener('click', function () {
+            if (otherSportsDiv.classList.contains('hidden')) {
+                otherSportsDiv.classList.remove('hidden');
+                otherSportsBtn.textContent = 'Скрыть другие виды спорта';
+            } else {
+                otherSportsDiv.classList.add('hidden');
+                otherSportsBtn.textContent = 'Другое';
+            }
+        });
+    </script>
 </body>
+
 </html>
