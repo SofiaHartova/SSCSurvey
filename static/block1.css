@@ -24,8 +24,27 @@ a {
       cursor: pointer;
       color: #ff0000;
 
-    }
+}
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.btn-primary {
+    width: 100%;
+}
+.col-lg-6 {
+    max-width: 400px;
+}
+.event-item {
+    position: relative;
+}
 
-    .event-item {
-      position: relative;
-    }
+.my-5 {
+    margin-top: 25%!important;
+}
+.thanks-text {
+    font-size: 20px;
+    text-align: center;
+}
