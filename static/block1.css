@@ -14,3 +14,37 @@ a {
     color: white;
     text-decoration: none;
 }
+.delete-button {
+      position: absolute;
+      top: -20px;
+      right: -50%;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #ff0000;
+
+}
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.option {
+    width: 100%;
+}
+.col-lg-6 {
+    max-width: 400px;
+}
+.event-item {
+    position: relative;
+}
+
+.my-5 {
+    margin-top: 25%!important;
+}
+.thanks-text {
+    font-size: 20px;
+    text-align: center;
+}

@@ -1,5 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_sqlalchemy import SQLAlchemy
+from db.db import db
+from db.models import EducationalOrganization, Event
+
+
 
 app = Flask(__name__)
 login = LoginManager(app)
@@ -25,6 +29,53 @@ def load_user(user_id):
     return None
 
 
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:sscsserverpostgres@sscsurvey.ru:5432/sscs_db?connect_timeout=10&sslmode=prefer'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+
+def save_survey_data():
+    block1_data = session.get('block1_data')
+    block2_data = session.get('block2_data')
+    block3_data = session.get('block3_data')
+    if block1_data:
+        organization = EducationalOrganization(
+            students_number=block1_data['totalStudents'],
+            club_members_grade1=block1_data['class1'],
+            club_members_grade2=block1_data['class2'],
+            club_members_grade3=block1_data['class3'],
+            club_members_grade4=block1_data['class4'],
+            club_members_grade5=block1_data['class5'],
+            club_members_grade6=block1_data['class6'],
+            club_members_grade7=block1_data['class7'],
+            club_members_grade8=block1_data['class8'],
+            club_members_grade9=block1_data['class9'],
+            club_members_grade10=block1_data['class10'],
+            club_members_grade11=block1_data['class11']
+        )
+        db.session.add(organization)
+        db.session.commit()
+    if block2_data:
+        for event_data in block2_data.values():
+            event = Event(
+                name=event_data['event_name'],
+                participants=event_data['participants'],
+                date=event_data['date']
+            )
+            db.session.add(event)
+        db.session.commit()
+    if block3_data:
+        for event_name, event_info in block3_data.items():
+            event = Event(
+                name=event_name,
+                participants=event_info['participants'],
+                date=event_info['eventDate']
+            )
+            db.session.add(event)
+        db.session.commit()
+
+# Login page
 @app.route('/', methods=['GET', 'POST'])
 def login():
     """
@@ -109,9 +160,11 @@ def block2():
     """
     if request.method == 'POST':
         event_data = {
-            'event1': request.form.get('event1'),
-            'participants1': request.form.get('participants1'),
-            'date1': request.form.get('date1'),
+            'event1': {
+                'event_name': request.form.get('event1'),
+                'participants': request.form.get('participants1'),
+                'date': request.form.get('date1')
+            },
             # Todo: add other events
         }
         session['block2_data'] = event_data  # Save data in session
@@ -131,12 +184,17 @@ def block3():
     """
     if request.method == 'POST':
         event_details = {
-            'eventName1': request.form.get('eventName1'),
-            'participants1': request.form.get('participants1'),
-            'eventDate1': request.form.get('eventDate1'),
+            'eventName1': {
+                'name': request.form.get('eventName1'),
+                'participants': request.form.get('participants1'),
+                'eventDate': request.form.get('eventDate1')
+            }
             # Todo: add other events
         }
         session['block3_data'] = event_details
+
+        save_survey_data()
+
         if request.form.get('action') == 'back':
             return redirect(url_for('block2'))
         elif request.form.get('action') == 'submit':
