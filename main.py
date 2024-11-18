@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from db.db import db
 from db.models import EducationalOrganization, Event
