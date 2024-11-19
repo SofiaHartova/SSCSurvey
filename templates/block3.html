@@ -124,7 +124,7 @@
 
             if (savedEvents) {
                 savedEvents.forEach(event => {
-                    addEventField(event.name, event.participants, event.date);
+                    addEventField(event.name, event.participants, event.dateStart, event.dateEnd);
                 });
             } else {
                 addEventField();

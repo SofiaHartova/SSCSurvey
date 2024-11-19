@@ -1010,32 +1010,38 @@
     document.getElementById('backPageBtn').addEventListener('click', saveEventData);
     document.getElementById('nextPageBtn').addEventListener('click', saveEventData);
 
-    // function loadEventData() {
-    //     const savedData = localStorage.getItem('eventData');
-    //     if (savedData) {
-    //         const eventData = JSON.parse(savedData);
-    //
-    //         Object.keys(eventData).forEach((eventKey) => {
-    //             const eventId = eventKey.replace('event', '');
-    //
-    //             const checkbox = document.getElementById('event' + eventId);
-    //             if (checkbox) {
-    //                 checkbox.checked = eventData[eventKey].participants !== "";
-    //                 toggleInputs(eventId);
-    //             }
-    //
-    //             const participantsInput = document.getElementById('participants' + eventId);
-    //             if (participantsInput) {
-    //                 participantsInput.value = eventData[eventKey].participants;
-    //             }
-    //
-    //             const dateInput = document.getElementById('date' + eventId);
-    //             if (dateInput) {
-    //                 dateInput.value = eventData[eventKey].date === "Мероприятие не было выбрано" ? "" : eventData[eventKey].date;
-    //             }
-    //         });
-    //     }
-    // }
+    function loadEventData() {
+        const savedData = localStorage.getItem('eventData');
+        if (savedData) {
+            const eventData = JSON.parse(savedData);
+
+            Object.keys(eventData).forEach((eventKey) => {
+                const eventId = eventKey.replace('event', '');
+
+                const checkbox = document.getElementById('event' + eventId);
+                if (checkbox) {
+                    checkbox.checked = eventData[eventKey].participants !== "";
+                    toggleInputs(eventId);
+                }
+
+                const participantsInput = document.getElementById('participants' + eventId);
+                if (participantsInput) {
+                    participantsInput.value = eventData[eventKey].participants;
+                }
+
+                const dateInputStart = document.getElementById('date' + eventId+'Start');
+                if (dateInputStart) {
+                    dateInputStart.value = eventData[eventKey].dateStart === "Мероприятие не было выбрано" ? "" : eventData[eventKey].dateStart;
+                }
+                const dateInputEnd = document.getElementById('date' + eventId+'End');
+                if (dateInputEnd) {
+                    dateInputEnd.value = eventData[eventKey].dateEnd === "Мероприятие не было выбрано" ? "" : eventData[eventKey].dateEnd;
+                }
+            });
+        }
+    }
+    window.addEventListener('DOMContentLoaded', loadEventData);
+
     function validateInputValue(input) {
         const value = input.value;
 
