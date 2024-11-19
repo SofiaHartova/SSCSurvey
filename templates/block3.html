@@ -137,38 +137,42 @@
 
         window.addEventListener('DOMContentLoaded', loadEvents);
 
-        function sendDataToBackend() {
-            const dataFromPage1 = JSON.parse(localStorage.getItem('formData'));
-            const dataFromPage2 = JSON.parse(localStorage.getItem('eventData'));
-            const dataFromPage3 = JSON.parse(localStorage.getItem('events'));
-
-            const combinedData = {
-                page1: dataFromPage1,
-                page2: dataFromPage2,
-                page3: dataFromPage3
-            };
-            // console.log(combinedData)
-            // fetch('https://example.com/api/saveData', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(combinedData)
-            // })
-            //     .then(response => {
-            //         if (!response.ok) {
-            //             throw new Error('Ошибка отправки данных');
-            //         }
-            //         return response.json();
-            //     })
-            //     .then(data => {
-            //         console.log('Данные успешно отправлены на сервер:', data);
-            //     })
-            //     .catch(error => {
-            //         console.error('Ошибка при отправке данных:', error);
-            //     });
-
-        }
+        // function sendDataToBackend() {
+        //     const dataFromPage1 = JSON.parse(localStorage.getItem('formData'));
+        //     const dataFromPage2 = JSON.parse(localStorage.getItem('eventData'));
+        //     const dataFromPage3 = JSON.parse(localStorage.getItem('events'));
+        //
+        //     const combinedData = {
+        //         page1: dataFromPage1,
+        //         page2: dataFromPage2,
+        //         page3: dataFromPage3
+        //     };
+        //     // console.log(combinedData)
+        //     fetch('https://example.com/api/saveData', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(combinedData)
+        //     })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Ошибка отправки данных');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log('Данные успешно отправлены на сервер:', data);
+        //
+        //         localStorage.removeItem('formData');
+        //         localStorage.removeItem('eventData');
+        //         localStorage.removeItem('events');
+        //     })
+        //     .catch(error => {
+        //         console.error('Ошибка при отправке данных:', error);
+        //     });
+        //
+        // }
         document.getElementById('submitFormBtn').addEventListener('click', sendDataToBackend);
         // console.log(sendDataToBackend());
 
