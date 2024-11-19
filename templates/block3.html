@@ -23,16 +23,20 @@
                         <input type="text" class="form-control" id="eventName1"
                             placeholder="Введите название мероприятия">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="participants1" class="form-label">Количество участников</label>
                         <input type="number" class="form-control" id="participants1" min="0" max="10000"
                             placeholder="Количество участников">
                     </div>
                     <button type="button" class="delete-button" onclick="deleteEvent(this)">×</button>
 
-                    <div class="col-md-3">
-                        <label for="eventDate1" class="form-label">Дата проведения</label>
-                        <input type="date" class="form-control" id="eventDate1">
+                    <div class="col-md-2">
+                        <label for="eventDate1Start" class="form-label">Дата начала</label>
+                        <input type="date" class="form-control" id="eventDate1Start">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="eventDate1End" class="form-label">Дата окончания</label>
+                        <input type="date" class="form-control" id="eventDate1End">
                     </div>
 
                 </div>
@@ -61,13 +65,17 @@
             <label for="eventName${eventCount}" class="form-label">Название мероприятия</label>
             <input type="text" class="form-control" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label for="participants${eventCount}" class="form-label">Количество участников</label>
             <input type="number" class="form-control" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
           </div>
-          <div class="col-md-3">
-            <label for="eventDate${eventCount}" class="form-label">Дата проведения</label>
-            <input type="date" class="form-control" id="eventDate${eventCount}" required>
+          <div class="col-md-2">
+            <label for="eventDate${eventCount}Start" class="form-label">Дата начала</label>
+            <input type="date" class="form-control" id="eventDate${eventCount}Start" required>
+          </div>
+          <div class="col-md-2">
+            <label for="eventDate${eventCount}End" class="form-label">Дата окончания</label>
+            <input type="date" class="form-control" id="eventDate${eventCount}End" required>
           </div>
         `;
 
@@ -100,10 +108,11 @@
             eventItems.forEach((item, index) => {
                 const name = item.querySelector(`#eventName${index + 1}`).value;
                 const participants = item.querySelector(`#participants${index + 1}`).value;
-                const date = item.querySelector(`#eventDate${index + 1}`).value;
+                const dateStart = item.querySelector(`#eventDate${index + 1}Start`).value;
+                const dateEnd = item.querySelector(`#eventDate${index + 1}End`).value;
 
                 if (name && participants && date) {
-                    events.push({ name, participants: Number(participants), date });
+                    events.push({ name, participants: Number(participants), dateStart, dateEnd });
                 }
             });
 
