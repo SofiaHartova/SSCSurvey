@@ -225,13 +225,27 @@ def view_data():
     pass
 
 
-@app.route("/school-data", methods=["GET"])
+@app.route("/school-data", methods=["GET", "POST"])
 @login_required
 def school_data():
     """
     School data page
     """
-    pass
+    if request.method == "POST":
+        return render_template(
+            "school-data.html",
+            class1=session["block1_data"]["class1"],
+            class2=session["block1_data"]["class2"],
+            class3=session["block1_data"]["class3"],
+            class4=session["block1_data"]["class4"],
+            class5=session["block1_data"]["class5"],
+            class6=session["block1_data"]["class6"],
+            class7=session["block1_data"]["class7"],
+            class8=session["block1_data"]["class8"],
+            class9=session["block1_data"]["class9"],
+            class10=session["block1_data"]["class10"],
+            class11=session["block1_data"]["class11"],
+        )
 
 
 @app.route("/compare-schools", methods=["GET"])
