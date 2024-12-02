@@ -1,0 +1,44 @@
+html,
+body {
+  background-color: #b9b9b9;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.thanks-text {
+    position: absolute;
+    top:40%; 
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.button {
+    position: absolute;
+    top:50%;
+    height: 50px;
+    width: 700px;
+    font-size: 26px;
+    border: 0;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #5972C5;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+  
+.button:hover {
+    background-color:#2A5CFF;
+    transition: 0.3s;
+}
+  
+.button:active {
+    background-color: #757575;
+    transition: 0;
+}

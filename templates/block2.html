@@ -6,36 +6,39 @@
   <title>Мероприятия</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/block1.css">
+  <link rel="stylesheet" href="../static/block2.css">
 
 </head>
 <body>
-  <div class="container my-4">
-    <h2 class="mb-4">Выберите мероприятия и укажите количество участников и дату</h2>
+  <div class="container">
+    <h2 class="">Выберите мероприятия и укажите количество участников и дату</h2>
     <form id="eventsForm" method="POST" action="/block2">
-      <div class="mb-3">
+      
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event1" onchange="toggleInputs(1)">
           <label class="form-check-label" for="event1">
             Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)          </label>
         </div>
         <div class="hidden" id="inputs1">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center ">
             <div class="col-auto">
               <label for="participants1" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants1" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants1" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date1" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date1">
+              <input type="date" class="formdate" id="date1" value="">
             </div>
           </div>
         </div>
       </div>
-      <div class="mb-3">
+
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event2" onchange="toggleInputs(2)">
           <label class="form-check-label" for="event2">
@@ -43,24 +46,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs2">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants2" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants2" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants2" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date2" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date2">
+              <input type="date" class="formdate" id="date2">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event3" onchange="toggleInputs(3)">
           <label class="form-check-label" for="event3">
@@ -68,24 +71,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs3">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants3" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants3" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants3" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date3" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date3">
+              <input type="date" class="formdate" id="date3">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event4" onchange="toggleInputs(4)">
           <label class="form-check-label" for="event4">
@@ -93,24 +96,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs4">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants4" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants4" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants4" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date4" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date4">
+              <input type="date" class="formdate" id="date4">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event5" onchange="toggleInputs(5)">
           <label class="form-check-label" for="event5">
@@ -118,24 +121,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs5">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants5" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants5" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants5" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date5" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date5">
+              <input type="date" class="formdate" id="date5">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event6" onchange="toggleInputs(6)">
           <label class="form-check-label" for="event6">
@@ -143,24 +146,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs6">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants6" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants6" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants6" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date6" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date6">
+              <input type="date" class="formdate" id="date6">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event7" onchange="toggleInputs(7)">
           <label class="form-check-label" for="event7">
@@ -168,24 +171,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs7">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants7" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants7" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants7" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date7" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date7">
+              <input type="date" class="formdate" id="date7">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event8" onchange="toggleInputs(8)">
           <label class="form-check-label" for="event8">
@@ -193,24 +196,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs8">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants8" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants8" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants8" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date8" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date8">
+              <input type="date" class="formdate" id="date8">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event9" onchange="toggleInputs(9)">
           <label class="form-check-label" for="event9">
@@ -218,24 +221,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs9">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants9" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants9" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants9" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date9" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date9">
+              <input type="date" class="formdate" id="date9">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event10" onchange="toggleInputs(10)">
           <label class="form-check-label" for="event10">
@@ -243,23 +246,23 @@
           </label>
         </div>
         <div class="hidden" id="inputs10">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants10" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants10" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants10" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date10" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date10">
+              <input type="date" class="formdate" id="date10">
             </div>
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event11" onchange="toggleInputs(11)">
           <label class="form-check-label" for="event11">
@@ -267,24 +270,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs11">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants11" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants11" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants11" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date11" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date11">
+              <input type="date" class="formdate" id="date11">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event12" onchange="toggleInputs(12)">
           <label class="form-check-label" for="event12">
@@ -292,24 +295,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs12">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants12" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants12" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants12" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date12" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date12">
+              <input type="date" class="formdate" id="date12">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event13" onchange="toggleInputs(13)">
           <label class="form-check-label" for="event13">
@@ -317,24 +320,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs13">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants13" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants13" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants13" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date13" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date13">
+              <input type="date" class="fordate" id="date13">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event14" onchange="toggleInputs(14)">
           <label class="form-check-label" for="event14">
@@ -342,24 +345,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs14">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants14" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants14" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants14" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date14" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date14">
+              <input type="date" class="formdate" id="date14">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event15" onchange="toggleInputs(15)">
           <label class="form-check-label" for="event15">
@@ -367,24 +370,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs15">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants15" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants15" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants15" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date15" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date15">
+              <input type="date" class="formdate" id="date15">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event16" onchange="toggleInputs(16)">
           <label class="form-check-label" for="event16">
@@ -392,24 +395,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs16">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants16" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants16" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants16" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date16" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date16">
+              <input type="date" class="formdate" id="date16">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event17" onchange="toggleInputs(17)">
           <label class="form-check-label" for="event17">
@@ -417,24 +420,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs17">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants17" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants17" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants17" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date17" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date17">
+              <input type="date" class="formdate" id="date17">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event18" onchange="toggleInputs(18)">
           <label class="form-check-label" for="event18">
@@ -442,24 +445,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs18">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants18" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants18" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants18" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date18" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date18">
+              <input type="date" class="formdate" id="date18">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event19" onchange="toggleInputs(19)">
           <label class="form-check-label" for="event19">
@@ -467,24 +470,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs19">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants19" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants19" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants19" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date19" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date19">
+              <input type="date" class="formdate" id="date19">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event20" onchange="toggleInputs(20)">
           <label class="form-check-label" for="event20">
@@ -492,24 +495,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs20">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants20" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants20" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants20" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date20" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date20">
+              <input type="date" class="formdate" id="date20">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event21" onchange="toggleInputs(21)">
           <label class="form-check-label" for="event21">
@@ -517,24 +520,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs21">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants21" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants21" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants21" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date21" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date21">
+              <input type="date" class="formdate" id="date21">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event22" onchange="toggleInputs(22)">
           <label class="form-check-label" for="event22">
@@ -542,23 +545,23 @@
           </label>
         </div>
         <div class="hidden" id="inputs22">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants22" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants22" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants22" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date22" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date22">
+              <input type="date" class="formdate" id="date22">
             </div>
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event23" onchange="toggleInputs(23)">
           <label class="form-check-label" for="event23">
@@ -566,24 +569,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs23">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants23" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants23" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants23" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date23" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date23">
+              <input type="date" class="formdate" id="date23">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event24" onchange="toggleInputs(24)">
           <label class="form-check-label" for="event24">
@@ -591,24 +594,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs24">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants24" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants24" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants24" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date24" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date24">
+              <input type="date" class="formdate" id="date24">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event25" onchange="toggleInputs(25)">
           <label class="form-check-label" for="event25">
@@ -616,24 +619,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs25">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants25" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants25" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants25" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date25" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date25">
+              <input type="date" class="formdate" id="date25">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event26" onchange="toggleInputs(26)">
           <label class="form-check-label" for="event26">
@@ -641,24 +644,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs26">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants26" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants26" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants26" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date26" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date26">
+              <input type="date" class="formdate" id="date26">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event27" onchange="toggleInputs(27)">
           <label class="form-check-label" for="event27">
@@ -666,24 +669,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs27">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants27" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants27" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants27" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date27" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date27">
+              <input type="date" class="formdate" id="date27">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event28" onchange="toggleInputs(28)">
           <label class="form-check-label" for="event28">
@@ -691,24 +694,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs28">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants28" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants28" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants28" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date28" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date28">
+              <input type="date" class="formdate" id="date28">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event29" onchange="toggleInputs(29)">
           <label class="form-check-label" for="event29">
@@ -716,24 +719,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs29">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants29" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants29" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants29" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date29" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date29">
+              <input type="date" class="formdate" id="date29">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event30" onchange="toggleInputs(30)">
           <label class="form-check-label" for="event30">
@@ -741,24 +744,24 @@
           </label>
         </div>
         <div class="hidden" id="inputs30">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants30" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants30" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants30" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date30" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date30">
+              <input type="date" class="formdate" id="date30">
             </div>
           </div>
         </div>
       </div>
       
-      <div class="mb-3">
+      <div class="in-contain">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="event31" onchange="toggleInputs(31)">
           <label class="form-check-label" for="event31">
@@ -766,24 +769,27 @@
           </label>
         </div>
         <div class="hidden" id="inputs31">
-          <div class="row g-3 align-items-center my-2">
+          <div class="in-in-contain row g-3 align-items-center">
             <div class="col-auto">
               <label for="participants31" class="col-form-label">Количество участников</label>
             </div>
             <div class="col-auto">
-              <input type="number" class="form-control" value="0" id="participants31" min="0" max="10000" placeholder="Введите количество">
+              <input type="number" class="formnumber" value="" id="participants31" min="0" max="10000" placeholder="Введите число">
             </div>
             <div class="col-auto">
               <label for="date31" class="col-form-label">Дата проведения</label>
             </div>
             <div class="col-auto">
-              <input type="date" class="form-control" id="date31">
+              <input type="date" class="formdate" id="date31">
             </div>
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-secondary" name="action" value="back" id="backPageBtn">Назад</button>
-      <button type="submit" class="btn btn-primary" name="action" value="next" id="nextPageBtn">Далее</button>
+
+      <div class="button-contain">
+        <button type="submit" class="button" name="action" value="back" id="backPageBtn">Назад</button>
+        <button type="submit" class="button" name="action" value="next" id="nextPageBtn">Далее</button>
+      </div>
     </form>
   </div>
 

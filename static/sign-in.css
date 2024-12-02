@@ -1,28 +1,90 @@
 html,
 body {
-  height: 100%;
-  background-color: #a7a7a7;
-}
-form {
-    margin-top: 70%;
-}
-.form-signin {
-  max-width: 340px;
-  padding: 1rem;
+  background-color: #b9b9b9;
 }
 
-.form-signin .form-floating:focus-within {
+.h3 {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 120px;
+  font-weight: 400;
+}
+
+form {
+    width: 500px;
+    background-color: #FFFFFF;
+    padding: 50px 60px;
+    position: relative; 
+    margin: 0 auto;
+    margin-top: 60px;
+    border-radius: 15px;
+    border: 1.5px solid #CDCDCD;
+}
+
+.form-floating:focus-within {
   z-index: 2;
 }
 
 .form-signin input[type="login"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  margin-bottom: 15px;
+  border: 1.5px solid #CDCDCD;
+  border-radius: 15px;
+}
+
+.form-signin input[type="login"]:focus {
+  border: 1.5px solid #2A5CFF;
 }
 
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  margin-bottom: 25px;
+  border: 1.5px solid #CDCDCD;
+  border-radius: 15px;
+}
+
+.form-signin input[type="password"]:focus {
+  border: 1.5px solid #2A5CFF;
+}
+
+label[for=floatingInput], label[for=floatingPassword] {
+  color: #CDCDCD;
+  font-weight: 300;
+}
+
+.button {
+  height: 50px;
+  width: 250px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 70px;
+  border: 0;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #5972C5;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color:#2A5CFF;
+  transition: 0.3s;
+}
+
+.button:active {
+  background-color: #757575;
+  transition: 0;
+}
+
+.form-check-input {
+  border: 1.5px solid black;
+}
+
+.form-check-input:focus {
+  border: 1.5px solid black;
+
+}
+
+.form-check-input:checked {
+  background-color: black;
+  border: 1.5px solid black;
 }

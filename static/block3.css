@@ -1,0 +1,180 @@
+html,
+body {
+    background-color: #b9b9b9;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+  margin-left: 100px;
+  margin-right: 100px;
+  max-width: 88%;
+  background-color: #b9b9b9;
+}
+
+h2 {
+    margin: 60px 0px;
+    margin-bottom: 80px;
+    font-size: 38px;
+    font-weight: 650;
+    text-align: center;
+}
+
+p {
+    font-size: 24px;
+    margin-bottom: 50px;
+    font-weight: 350;
+}
+
+.colon-2 {
+    margin-left: -20px;
+}
+
+.colon-3 {
+    margin-left: 50px;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 15px;
+    font-size: 20px;
+
+}
+
+.formtext {
+    width: 90vh;
+    margin-top: 5px;
+    margin-right: 40px;
+    padding: 6px;
+    border: 0;
+    border-radius: 5px;
+    color: black
+}
+
+.formtext::placeholder {
+    color: #B4B4B4;
+}
+
+.formtext:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formnumber {
+    width: 25vh;
+    margin-top: 5px;
+    margin-right: 40px;
+    padding: 6px;
+    border: 0;
+    border-radius: 5px;
+    color: black  
+}
+
+.formnumber::placeholder {
+    color: #B4B4B4;
+}
+
+.formnumber:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formdate {
+    width: 15vh;
+    margin-top: 5px;
+    margin-left: 20px;
+    padding: 6px;
+    border: 0;
+    border-radius: 5px;
+    color: #B4B4B4  
+}
+
+.formdate:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.button-colon {
+    height: 30px;
+    width: 30px;
+    margin-top: 52px;
+    margin-left: -30px;
+    padding: 0;
+    text-align: center;
+    font-size: 46px;
+    border: 0;
+    color: black;
+    background-color: #b9b9b9;
+    transition: 0.3s;
+}
+
+.button-colon:hover {
+    color: red;
+    transition: 0.3s;
+}
+
+.button-colon:active {
+    color: gray;
+    transition: 0.3s;
+}
+
+.button-event-contain {
+    position: relative;
+    bottom: 0;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.button-event {
+    height: 50px;
+    width: 350px;
+    font-size: 22px;
+    margin-top: 50px;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #5B9262;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+  
+.button-event:hover {
+    background-color:#5BB566;
+    transition: 0.3s;
+}
+  
+.button-event:active {
+    background-color: #757575;
+    transition: 0;
+}
+
+.button-contain {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0;
+    margin-top: 100px;
+    margin-bottom: 70px;
+}
+
+.button {
+    height: 50px;
+    width: 250px;
+    font-size: 24px;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #5972C5;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+  
+.button:hover {
+    background-color:#2A5CFF;
+    transition: 0.3s;
+}
+  
+.button:active {
+    background-color: #757575;
+    transition: 0;
+}
