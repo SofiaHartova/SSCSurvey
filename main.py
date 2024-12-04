@@ -42,6 +42,7 @@ def save_survey_data():
     block1_data = session.get("block1_data")
     block2_data = session.get("block2_data")
     block3_data = session.get("block3_data")
+    current_user_login = session.get("user")
 
     if block1_data:
         organization = EducationalOrganization(
@@ -57,6 +58,8 @@ def save_survey_data():
             club_members_grade9=block1_data["class9"],
             club_members_grade10=block1_data["class10"],
             club_members_grade11=block1_data["class11"],
+            user_login=current_user_login,
+            name=request.form.get("school_name"),
         )
         db.session.add(organization)
         db.session.commit()
