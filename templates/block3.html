@@ -6,39 +6,46 @@
   <title>Физкультурные мероприятия</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/block1.css">
+  <link rel="stylesheet" href="../static/block3.css">
 </head>
 
 <body>
-    <div class="container my-4">
-      <h2 class="mb-4">Физкультурные спортивные мероприятия</h2>
+    <div class="container">
+      <h2 class="">Физкультурные спортивные мероприятия</h2>
       <p>Укажите полное название мероприятия, количество обучающихся, принявших участие, и дату проведения мероприятия.</p>
 
       <form id="eventsForm" method="POST" action="/block3">
         <div id="eventFields">
           <div class="event-item row g-3 mb-3">
-            <div class="col-md-6">
-              <label for="eventName1" class="form-label">Название мероприятия</label>
-              <input type="text" class="form-control" id="eventName1" placeholder="Введите название мероприятия" >
+            <div class="colon-1 col-md-7">
+              <label for="eventName1" class="label">Название мероприятия</label>
+              <input type="text" class="formtext" id="eventName1" placeholder="Введите название мероприятия" >
             </div>
-            <div class="col-md-3">
-              <label for="participants1" class="form-label">Количество участников</label>
-              <input type="number" class="form-control" id="participants1" min="0" max="10000" placeholder="Количество участников" >
-            </div>
-            <button type="button" class="delete-button" onclick="deleteEvent(this)">×</button>
-
-            <div class="col-md-3">
-              <label for="eventDate1" class="form-label">Дата проведения</label>
-              <input type="date" class="form-control" id="eventDate1" >
+            
+            <div class="colon-2 col-md-2">
+              <label for="participants1" class="label">Количество участников</label>
+              <input type="number" class="formnumber" id="participants1" min="0" max="10000" placeholder="Введите число" >
             </div>
 
+            <div class="colon-3 col-md-2">
+              <label for="eventDate1" class="label">Дата проведения</label>
+              <input type="date" class="formdate" id="eventDate1" >
+            </div>
+
+            <button type="button" class="button-colon col-md-1" onclick="deleteEvent(this)">×</button>
           </div>
         </div>
 
-        <button type="button" class="btn btn-success mb-3"  id="addEventBtn" onclick="addEventField()">Добавить мероприятие</button>
-
-        <button type="submit" class="btn btn-secondary" name="action" id="backPageBtn" value="back">Назад</button>
-        <button type="submit" class="btn btn-primary" name="action" id="submitFormBtn" value="submit">Отправить</button>
+        <div class="button-event-contain">
+          <button type="button" class="button-event"  id="addEventBtn" onclick="addEventField()">Добавить мероприятие</button>
+        </div>
+  
+        <div class="button-contain">
+          <button type="submit" class="button" name="action" id="backPageBtn" value="back">Назад</button>
+          <button type="submit" class="button" name="action" id="submitFormBtn" value="submit">Отправить</button>
+        </div>
       </form>
+
     </div>
 
     <script>
@@ -52,19 +59,20 @@
         const eventItem = document.createElement('div');
         eventItem.classList.add('event-item', 'row', 'g-3', 'mb-3');
         eventItem.innerHTML = `
-          <button type="button" class="delete-button" onclick="deleteEvent(this)">×</button>
-          <div class="col-md-6">
-            <label for="eventName${eventCount}" class="form-label">Название мероприятия</label>
-            <input type="text" class="form-control" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
+          <div class="colon-1 col-md-7">
+            <label for="eventName${eventCount}" class="label">Название мероприятия</label>
+            <input type="text" class="formtext" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
           </div>
-          <div class="col-md-3">
-            <label for="participants${eventCount}" class="form-label">Количество участников</label>
-            <input type="number" class="form-control" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
+          <div class="colon-2 col-md-2">
+            <label for="participants${eventCount}" class="label">Количество участников</label>
+            <input type="number" class="formnumber" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
           </div>
-          <div class="col-md-3">
-            <label for="eventDate${eventCount}" class="form-label">Дата проведения</label>
-            <input type="date" class="form-control" id="eventDate${eventCount}" required>
+          <div class="colon-3 col-md-2">
+            <label for="eventDate${eventCount}" class="label">Дата проведения</label>
+            <input type="date" class="formdate" id="eventDate${eventCount}" required>
           </div>
+
+          <button type="button" class="button-colon col-md-1" onclick="deleteEvent(this)">×</button>
         `;
 
         eventFields.appendChild(eventItem);
