@@ -25,18 +25,6 @@ a {
       color: #ff0000;
 
 }
-.centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.option {
-    width: 100%;
-}
-.col-lg-6 {
-    max-width: 400px;
-}
 .event-item {
     position: relative;
 }

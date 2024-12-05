@@ -1,80 +1,92 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Физкультурные мероприятия</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../static/block1.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Физкультурные мероприятия</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/block1.css">
 </head>
 
 <body>
     <div class="container my-4">
-      <h2 class="mb-4">Физкультурные спортивные мероприятия</h2>
-      <p>Укажите полное название мероприятия, количество обучающихся, принявших участие, и дату проведения мероприятия.</p>
+        <h2 class="mb-4">Физкультурные спортивные мероприятия</h2>
+        <p>Укажите полное название мероприятия, количество обучающихся, принявших участие, и дату проведения
+            мероприятия.</p>
 
-      <form id="eventsForm" method="POST" action="/block3">
-        <div id="eventFields">
-          <div class="event-item row g-3 mb-3">
-            <div class="col-md-6">
-              <label for="eventName1" class="form-label">Название мероприятия</label>
-              <input type="text" class="form-control" id="eventName1" placeholder="Введите название мероприятия" >
+        <form id="eventsForm" method="POST" action="/block3">
+            <div id="eventFields">
+                <div class="event-item row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="eventName1" class="form-label">Название мероприятия</label>
+                        <input type="text" name="eventName1" class="form-control" id="eventName1"
+                            placeholder="Введите название мероприятия">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="participants1" class="form-label">Количество участников</label>
+                        <input type="number" name="extraAmountParticipants1" class="form-control" id="participants1" min="0" max="10000"
+                            placeholder="Количество участников">
+                    </div>
+                    <button type="button" class="delete-button" onclick="deleteEvent(this)">×</button>
+
+                    <div class="col-md-2">
+                        <label for="eventDate1Start" class="form-label">Дата начала</label>
+                        <input type="date" name="extraEventStart1" class="form-control" id="eventDate1Start">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="eventDate1End" class="form-label">Дата окончания</label>
+                        <input type="date" name="extraEventEnd1" class="form-control" id="eventDate1End">
+                    </div>
+
+                </div>
             </div>
-            <div class="col-md-3">
-              <label for="participants1" class="form-label">Количество участников</label>
-              <input type="number" class="form-control" id="participants1" min="0" max="10000" placeholder="Количество участников" >
-            </div>
-            <button type="button" class="delete-button" onclick="deleteEvent(this)">×</button>
 
-            <div class="col-md-3">
-              <label for="eventDate1" class="form-label">Дата проведения</label>
-              <input type="date" class="form-control" id="eventDate1" >
-            </div>
+            <button type="button" class="btn btn-success mb-3" id="addEventBtn" onclick="addEventField()">Добавить
+                мероприятие</button>
 
-          </div>
-        </div>
-
-        <button type="button" class="btn btn-success mb-3"  id="addEventBtn" onclick="addEventField()">Добавить мероприятие</button>
-
-        <button type="submit" class="btn btn-secondary" name="action" id="backPageBtn" value="back">Назад</button>
-        <button type="submit" class="btn btn-primary" name="action" id="submitFormBtn" value="submit">Отправить</button>
-      </form>
+            <button type="submit" class="btn btn-secondary" name="action" id="backPageBtn" value="back">Назад</button>
+            <button type="submit" class="btn btn-primary" name="action" id="submitFormBtn"
+                value="submit">Отправить</button>
+        </form>
     </div>
 
     <script>
-      console.log(localStorage.getItem('events'))
+        let eventCount = 1;
+        function addEventField(name = "", participants = "", date = "") {
+            eventCount++;
+            const eventFields = document.getElementById('eventFields');
 
-      let eventCount = 0;
-      function addEventField(name="", participants="", date="") {
-        eventCount++;
-        const eventFields = document.getElementById('eventFields');
-
-        const eventItem = document.createElement('div');
-        eventItem.classList.add('event-item', 'row', 'g-3', 'mb-3');
-        eventItem.innerHTML = `
+            const eventItem = document.createElement('div');
+            eventItem.classList.add('event-item', 'row', 'g-3', 'mb-3');
+            eventItem.innerHTML = `
           <button type="button" class="delete-button" onclick="deleteEvent(this)">×</button>
           <div class="col-md-6">
             <label for="eventName${eventCount}" class="form-label">Название мероприятия</label>
-            <input type="text" class="form-control" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
+            <input type="text" name="eventName${eventCount}" class="form-control" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label for="participants${eventCount}" class="form-label">Количество участников</label>
-            <input type="number" class="form-control" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
+            <input type="number" name="extraAmountParticipants${eventCount}" class="form-control" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
           </div>
-          <div class="col-md-3">
-            <label for="eventDate${eventCount}" class="form-label">Дата проведения</label>
-            <input type="date" class="form-control" id="eventDate${eventCount}" required>
+          <div class="col-md-2">
+            <label for="eventDate${eventCount}Start" class="form-label">Дата начала</label>
+            <input type="date" name="extraEventStart${eventCount}" class="form-control" id="eventDate${eventCount}Start" required>
+          </div>
+          <div class="col-md-2">
+            <label for="eventDate${eventCount}End" class="form-label">Дата окончания</label>
+            <input type="date" name="extraEventEnd${eventCount}" class="form-control" id="eventDate${eventCount}End" required>
           </div>
         `;
 
-        eventFields.appendChild(eventItem);
-      }
-      function deleteEvent(button) {
-        const eventItem = button.closest('.event-item');
-        eventItem.remove();
-      }
+            eventFields.appendChild(eventItem);
+        }
+        function deleteEvent(button) {
+            const eventItem = button.closest('.event-item');
+            eventItem.remove();
+        }
 
-      function validateInputValue(input) {
+        function validateInputValue(input) {
             const value = input.value;
 
             if (/^0\d/.test(value)) {
@@ -85,48 +97,88 @@
                 input.value = "";
             }
         }
-      document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
-        input.addEventListener('input', () => validateInputValue(input));
-      });
-      function saveEvents(event) {
-
-        const eventItems = document.querySelectorAll('.event-item');
-        const events = [];
-
-        eventItems.forEach((item, index) => {
-          const name = item.querySelector(`#eventName${index + 1}`).value;
-          const participants = item.querySelector(`#participants${index + 1}`).value;
-          const date = item.querySelector(`#eventDate${index + 1}`).value;
-
-          if (name && participants && date) {
-            events.push({ name, participants: Number(participants), date });
-          }
+        document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
+            input.addEventListener('input', () => validateInputValue(input));
         });
+        function saveEvents(event) {
 
-        localStorage.setItem('events', JSON.stringify(events));
-      }
+            const eventItems = document.querySelectorAll('.event-item');
+            const events = [];
 
-      function loadEvents() {
-        const savedEvents = JSON.parse(localStorage.getItem('events'));
+            eventItems.forEach((item, index) => {
+                const name = item.querySelector(`#eventName${index + 1}`).value;
+                const participants = item.querySelector(`#participants${index + 1}`).value;
+                const dateStart = item.querySelector(`#eventDate${index + 1}Start`).value;
+                const dateEnd = item.querySelector(`#eventDate${index + 1}End`).value;
 
-        if (savedEvents) {
-          savedEvents.forEach(event => {
-            addEventField(event.name, event.participants, event.date);
-          });
-        } else {
-          addEventField();
+                if (name && participants && date) {
+                    events.push({ name, participants: Number(participants), dateStart, dateEnd });
+                }
+            });
+
+            localStorage.setItem('events', JSON.stringify(events));
         }
-      }
 
-      document.getElementById('backPageBtn').addEventListener('click', saveEvents);
-      document.getElementById('submitFormBtn').addEventListener('click', saveEvents);
+        function loadEvents() {
+            const savedEvents = JSON.parse(localStorage.getItem('events'));
 
-      window.addEventListener('DOMContentLoaded', loadEvents);
+            if (savedEvents) {
+                savedEvents.forEach(event => {
+                    addEventField(event.name, event.participants, event.dateStart, event.dateEnd);
+                });
+            } else {
+                addEventField();
+            }
+        }
 
+        document.getElementById('backPageBtn').addEventListener('click', saveEvents);
+        document.getElementById('submitFormBtn').addEventListener('click', saveEvents);
+
+
+        window.addEventListener('DOMContentLoaded', loadEvents);
+
+        // function sendDataToBackend() {
+        //     const dataFromPage1 = JSON.parse(localStorage.getItem('formData'));
+        //     const dataFromPage2 = JSON.parse(localStorage.getItem('eventData'));
+        //     const dataFromPage3 = JSON.parse(localStorage.getItem('events'));
+        //
+        //     const combinedData = {
+        //         page1: dataFromPage1,
+        //         page2: dataFromPage2,
+        //         page3: dataFromPage3
+        //     };
+        //     // console.log(combinedData)
+        //     fetch('https://example.com/api/saveData', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(combinedData)
+        //     })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Ошибка отправки данных');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log('Данные успешно отправлены на сервер:', data);
+        //
+        //         localStorage.removeItem('formData');
+        //         localStorage.removeItem('eventData');
+        //         localStorage.removeItem('events');
+        //     })
+        //     .catch(error => {
+        //         console.error('Ошибка при отправке данных:', error);
+        //     });
+        //
+        // }
+        document.getElementById('submitFormBtn').addEventListener('click', sendDataToBackend);
+        // console.log(sendDataToBackend());
 
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
 
 </html>
