@@ -17,19 +17,24 @@
       <form id="eventsForm" method="POST" action="/block3">
         <div id="eventFields">
           <div class="event-item row g-3 mb-3">
-            <div class="colon-1 col-md-7">
+            <div class="colon-1 col-md-5">
               <label for="eventName1" class="label">Название мероприятия</label>
-              <input type="text" class="formtext" id="eventName1" placeholder="Введите название мероприятия" >
+              <input type="text" name="eventName1" class="formtext" id="eventName1" placeholder="Введите название мероприятия" >
             </div>
             
             <div class="colon-2 col-md-2">
               <label for="participants1" class="label">Количество участников</label>
-              <input type="number" class="formnumber" id="participants1" min="0" max="10000" placeholder="Введите число" >
+              <input type="number" name="extraAmountParticipants1" class="formnumber" id="participants1" min="0" max="10000" placeholder="Введите число" >
             </div>
 
             <div class="colon-3 col-md-2">
-              <label for="eventDate1" class="label">Дата проведения</label>
-              <input type="date" class="formdate" id="eventDate1" >
+              <label for="eventDate1Start" class="label">Дата начала</label>
+              <input type="date" name="extraEventStart1" class="formdate" id="eventDate1Start">
+            </div>
+
+            <div class="colon-4 col-md-2">
+              <label for="eventDate1End" class="label">Дата окончания</label>
+              <input type="date" name="extraEventEnd1" class="formdate" id="eventDate1End">
             </div>
 
             <button type="button" class="button-colon col-md-1" onclick="deleteEvent(this)">×</button>
@@ -51,7 +56,7 @@
     <script>
       console.log(localStorage.getItem('events'))
 
-      let eventCount = 0;
+      let eventCount = 1;
       function addEventField(name="", participants="", date="") {
         eventCount++;
         const eventFields = document.getElementById('eventFields');
@@ -59,17 +64,21 @@
         const eventItem = document.createElement('div');
         eventItem.classList.add('event-item', 'row', 'g-3', 'mb-3');
         eventItem.innerHTML = `
-          <div class="colon-1 col-md-7">
+          <div class="colon-1 col-md-5">
             <label for="eventName${eventCount}" class="label">Название мероприятия</label>
-            <input type="text" class="formtext" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
+            <input type="text" name="eventName${eventCount}" class="formtext" id="eventName${eventCount}" placeholder="Введите название мероприятия" required>
           </div>
           <div class="colon-2 col-md-2">
             <label for="participants${eventCount}" class="label">Количество участников</label>
-            <input type="number" class="formnumber" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
+            <input type="number" name="extraAmountParticipants${eventCount}" class="formnumber" id="participants${eventCount}" min="0" max="10000" placeholder="Количество участников" required>
           </div>
           <div class="colon-3 col-md-2">
-            <label for="eventDate${eventCount}" class="label">Дата проведения</label>
-            <input type="date" class="formdate" id="eventDate${eventCount}" required>
+            <label for="eventDate${eventCount}Start" class="label">Дата начала</label>
+            <input type="date" name="extraEventStart${eventCount}" class="formdate" id="eventDate${eventCount}Start" required>
+          </div>
+          <div class="colon-4 col-md-2">
+            <label for="eventDate${eventCount}End" class="label">Дата окончания</label>
+            <input type="date" name="extraEventEnd${eventCount}" class="formdate" id="eventDate${eventCount}End" required>
           </div>
 
           <button type="button" class="button-colon col-md-1" onclick="deleteEvent(this)">×</button>

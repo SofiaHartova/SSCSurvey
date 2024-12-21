@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: #b9b9b9;
+  background: url("../img/Фон.png") no-repeat;
   margin: 0;
   padding: 0;
 }
