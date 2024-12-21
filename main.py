@@ -42,6 +42,8 @@ def save_survey_data():
     block1_data = session.get("block1_data")
     block2_data = session.get("block2_data")
     block3_data = session.get("block3_data")
+    current_user_login = session.get("user")
+
     if block1_data:
         organization = EducationalOrganization(
             students_number=block1_data["totalStudents"],
@@ -56,24 +58,30 @@ def save_survey_data():
             club_members_grade9=block1_data["class9"],
             club_members_grade10=block1_data["class10"],
             club_members_grade11=block1_data["class11"],
+            user_login=current_user_login,
+            name=request.form.get("school_name"),
         )
         db.session.add(organization)
         db.session.commit()
+
     if block2_data:
         for event_data in block2_data.values():
             event = Event(
                 name=event_data["event_name"],
                 participants=event_data["participants"],
-                date_start=event_data["date"],
+                date_start=event_data["date_start"],
+                date_end=event_data["date_end"],
             )
             db.session.add(event)
         db.session.commit()
+
     if block3_data:
         for event_name, event_info in block3_data.items():
             event = Event(
                 name=event_name,
                 participants=event_info["participants"],
-                date_start=event_info["eventDate"],
+                date_start=event_info["event_date_start"],
+                date_end=event_info["event_date_end"],
             )
             db.session.add(event)
         db.session.commit()
@@ -167,7 +175,8 @@ def block2():
             "event1": {
                 "event_name": request.form.get("event1"),
                 "participants": request.form.get("participants1"),
-                "date": request.form.get("date1"),
+                "date_start": request.form.get("date_start1"),
+                "date_end": request.form.get("date_end1"),
             },
             # Todo: add other events
         }
@@ -191,7 +200,8 @@ def block3():
             "eventName1": {
                 "name": request.form.get("eventName1"),
                 "participants": request.form.get("participants1"),
-                "eventDate": request.form.get("eventDate1"),
+                "event_date_start": request.form.get("event_date_start1"),
+                "event_date_end": request.form.get("event_date_end1"),
             }
             # Todo: add other events
         }

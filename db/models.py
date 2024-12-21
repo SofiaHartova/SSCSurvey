@@ -16,6 +16,8 @@ class EducationalOrganization(db.Model):
     club_members_grade10 = db.Column(db.Integer, default=0)
     club_members_grade11 = db.Column(db.Integer, default=0)
     students_number = db.Column(db.Integer, nullable=False)
+    user_login = db.Column(db.String, nullable=False, unique=True)
+    name = db.Column(db.String, nullable=False)
     sports = db.relationship(
         "Sport",
         secondary="educational_organization_sport",
