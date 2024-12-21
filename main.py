@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from db.db import db
 from db.models import EducationalOrganization, Event
@@ -46,7 +46,7 @@ def save_survey_data():
 
     if block1_data:
         organization = EducationalOrganization(
-            students_number=block1_data["totalStudents"],
+            students_number=block1_data["students_number"],
             club_members_grade1=block1_data["class1"],
             club_members_grade2=block1_data["class2"],
             club_members_grade3=block1_data["class3"],
@@ -100,12 +100,13 @@ def login():
         if login in users and users[login]["password"] == password:
             user = User(login)
             login_user(user)
-            session["user"] = login
+            session["user_login"] = login
             return redirect(url_for("action"))
         else:
             flash("Неверный логин или пароль!")
 
     return render_template("sign-in.html")
+
 
 
 @app.route("/logout")
@@ -145,7 +146,7 @@ def block1():
     """
     if request.method == "POST":
         data = {
-            "totalStudents": request.form.get("totalStudents"),
+            "students_number": request.form.get("totalStudents"),
             "class1": request.form.get("class1"),
             "class2": request.form.get("class2"),
             "class3": request.form.get("class3"),
@@ -230,9 +231,32 @@ def thanks():
 @login_required
 def view_data():
     """
-    Processing the "Посмотреть данные" button
+    View data for the logged-in school.
     """
-    pass
+    # Найти организацию по user_login авторизованного пользователя
+    organization = EducationalOrganization.query.filter_by(user_login=session["user_login"]).first()
+
+    if not organization:
+        flash("Данные для вашей школы не найдены.", "error")
+        return redirect(url_for("option"))  # Вернуться на стартовую страницу
+    
+    # Передаем данные в шаблон
+    return render_template(
+        "school-data.html",
+        class1=organization.club_members_grade1,
+        class2=organization.club_members_grade2,
+        class3=organization.club_members_grade3,
+        class4=organization.club_members_grade4,
+        class5=organization.club_members_grade5,
+        class6=organization.club_members_grade6,
+        class7=organization.club_members_grade7,
+        class8=organization.club_members_grade8,
+        class9=organization.club_members_grade9,
+        class10=organization.club_members_grade10,
+        class11=organization.club_members_grade11,
+        students_number=organization.students_number,
+        school_name=organization.name,
+    )
 
 
 @app.route("/school-data", methods=["GET", "POST"])
@@ -255,6 +279,7 @@ def school_data():
             class9=session["block1_data"]["class9"],
             class10=session["block1_data"]["class10"],
             class11=session["block1_data"]["class11"],
+            students_number=session.get("students_number", 0),
         )
 
 
