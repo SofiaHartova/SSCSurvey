@@ -1,6 +1,8 @@
+html,
 body {
-    background-color: #a7a7a7;
+    background-color: #b9b9b9;
 }
+
 .hidden {
     display: none;
 }
@@ -25,6 +27,15 @@ a {
       color: #ff0000;
 
 }
+
+.option {
+    width: 100%;
+}
+
+.col-lg-6 {
+    max-width: 400px;
+}
+
 .event-item {
     position: relative;
 }
@@ -32,7 +43,297 @@ a {
 .my-5 {
     margin-top: 25%!important;
 }
+
 .thanks-text {
     font-size: 20px;
     text-align: center;
+}
+
+h2 {
+    margin: 60px 0px;
+    margin-bottom: 80px;
+    font-size: 38px;
+    font-weight: 650;
+    text-align: center;
+}
+
+.formlabel-1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.formnumber-1 {
+    width: 55%;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: black
+}
+
+.formnumber-1::placeholder {
+    color: #B4B4B4;
+}
+
+.formnumber-1:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formnumber-1:hover {
+    outline: 1px solid #2A5CFF;
+}
+
+.formlabel-2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-left: 20px; 
+}
+
+.formnumber-2 {
+    width: 70%;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: black 
+}
+
+.formnumber-2::placeholder {
+    color: #B4B4B4;
+}
+
+.formnumber-2:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formnumber-2:hover {
+    outline: 1px solid #2A5CFF;
+}
+
+.formlabel-3-1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-left: 35%;
+}
+
+.formnumber-3-1 {
+    width: 55%;
+    margin-left: 35%;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: black 
+}
+
+.formnumber-3-1::placeholder {
+    color: #B4B4B4;
+}
+
+.formnumber-3-1:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formnumber-3-1:hover {
+    outline: 1px solid #2A5CFF;
+}
+
+.formlabel-3-2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.formnumber-3-2 {
+    width: 55%;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: black 
+}
+
+.formnumber-3-2::placeholder {
+    color: #B4B4B4;
+}
+
+.formnumber-3-2:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formnumber-3-2:hover {
+    outline: 1px solid #2A5CFF;
+}
+
+.form-check-container {
+    background-color: #dfdfdf;
+    max-width: 45%;
+    max-height: 600px;
+    margin-left: 20px;
+    padding: 25px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.form-check-container::-webkit-scrollbar-track {
+    border-top-right-radius: 5px;
+}
+
+.input-search {
+    width: 60%;
+    border: 0;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: black  
+}
+
+.input-search::placeholder {
+    color: #B4B4B4;
+}
+
+.input-search:focus {
+    outline: 2px solid #2A5CFF;
+}
+
+.input-search:hover {
+    outline: 2px solid #2A5CFF;
+}
+
+.button-search {
+    height: 34px;
+    width: 100px;
+    margin-left: -10px;
+    border: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+    background-color: #5972C5;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.button-search:hover {
+    background-color:#2A5CFF;
+    transition: 0.3s;
+}
+  
+.button-search:active {
+    background-color: #757575;
+    transition: 0;
+}
+
+.p-container {
+    font-size: 26px;
+    font-weight: 300;
+    color: #757575;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    border: 1.5px solid black;
+}
+  
+.form-check-input:focus {
+    border: 1.5px solid black;
+  
+}
+  
+.form-check-input:checked {
+    background-color: black;
+    border: 1.5px solid black;
+}
+
+.form-check-label {
+    font-weight: 700;
+}
+
+.formnumber-4 {
+    width: 80%;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    padding: 4px 5px;
+    border: 0;
+    border-radius: 5px;
+    color: black  
+}
+
+.formnumber-4::placeholder {
+    color: #B4B4B4;
+}
+
+.formnumber-4:focus {
+    outline: 1px solid #2A5CFF;
+}
+
+.formnumber-4:hover {
+    outline: 1px solid #2A5CFF;
+}
+
+.button-contain {
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom: 0;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.button {
+    height: 50px;
+    width: 250px;
+    font-size: 24px;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #5972C5;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+  
+.button:hover {
+    background-color:#2A5CFF;
+    transition: 0.3s;
+}
+  
+.button:active {
+    background-color: #757575;
+    transition: 0;
+}
+
+.button-2 {
+    height: 40px;
+    width: 200px;
+    margin: 25px 0px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #5972C5;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+  
+.button-2:hover {
+    background-color:#2A5CFF;
+    transition: 0.3s;
+}
+  
+.button-2:active {
+    background-color: #757575;
+    transition: 0;
 }
