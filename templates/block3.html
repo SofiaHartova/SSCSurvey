@@ -89,7 +89,46 @@
             const eventItem = button.closest('.event-item');
             eventItem.remove();
         }
+      function validateForm(event) {
+        const eventItems = document.querySelectorAll('.event-item');
+        let isValid = true;
+        const today = new Date();
 
+
+        eventItems.forEach((item, index) => {
+          const name = item.querySelector(`#eventName${index + 1}`).value.trim();
+          const participants = item.querySelector(`#participants${index + 1}`).value.trim();
+          const dateStart = item.querySelector(`#eventDate${index + 1}Start`).value.trim();
+          const dateEnd = item.querySelector(`#eventDate${index + 1}End`).value.trim();
+
+          if (!name || !participants || !dateStart || !dateEnd) {
+            isValid = false;
+            alert(`Заполните все поля для мероприятия ${index + 1}.`);
+            return;
+          }
+          const startDate = new Date(dateStart);
+          const endDate = new Date(dateEnd);
+          if (startDate > endDate) {
+            isValid = false;
+            alert(`Дата окончания не может быть раньше даты начала для мероприятия ${index + 1}.`);
+            return;
+          }
+
+          if (startDate > today || endDate > today) {
+            isValid = false;
+            alert(`Даты для мероприятия ${index + 1} не могут быть в будущем.`);
+            return;
+          }
+        });
+
+        if (!isValid) {
+          event.preventDefault(); // Отменяем действие кнопки
+        }
+      }
+
+      // Добавляем обработчики на кнопки
+      document.getElementById('backPageBtn').addEventListener('click', validateForm);
+      document.getElementById('submitFormBtn').addEventListener('click', validateForm);
         function validateInputValue(input) {
             const value = input.value;
 

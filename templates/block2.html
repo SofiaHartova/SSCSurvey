@@ -989,7 +989,62 @@
             inputs.style.display = "none";
         }
     }
-    function saveEventData() {
+     function validateFields() {
+       let isValid = true;
+       const currentDate = new Date().toISOString().split("T")[0];
+       const minDate = "1970-01-01";
+       document.querySelectorAll('.form-check-input').forEach((checkbox) => {
+         const eventId = checkbox.id.replace('event', '');
+         const inputsContainer = document.getElementById('inputs' + eventId);
+
+         if (checkbox.checked) {
+           const participants = document.getElementById('participants' + eventId)?.value;
+           const dateStart = document.getElementById('date' + eventId + 'Start')?.value;
+           const dateEnd = document.getElementById('date' + eventId + 'End')?.value;
+
+           if (!participants || !dateStart || !dateEnd) {
+             isValid = false;
+             inputsContainer.querySelectorAll('input').forEach(input => {
+               if (!input.value) {
+                 input.classList.add('is-invalid');
+               } else {
+                 input.classList.remove('is-invalid');
+               }
+             });
+           } else {
+             if (dateStart < minDate || dateStart > currentDate || dateEnd < minDate || dateEnd > currentDate) {
+               isValid = false;
+               alert(`Даты должны быть в диапазоне от ${minDate} до ${currentDate}`);
+               document.getElementById('date' + eventId + 'Start').classList.add('is-invalid');
+               document.getElementById('date' + eventId + 'End').classList.add('is-invalid');
+             } else if (dateStart > dateEnd) {
+               isValid = false;
+               alert("Дата начала не может быть позже даты окончания.");
+               document.getElementById('date' + eventId + 'Start').classList.add('is-invalid');
+               document.getElementById('date' + eventId + 'End').classList.add('is-invalid');
+             } else {
+               // Если даты корректны, убираем подсветку
+               document.getElementById('date' + eventId + 'Start').classList.remove('is-invalid');
+               document.getElementById('date' + eventId + 'End').classList.remove('is-invalid');
+             }
+             inputsContainer.querySelectorAll('input').forEach(input => {
+               input.classList.remove('is-invalid');
+             });
+           }
+         }
+       });
+
+       return isValid;
+     }
+
+
+
+     function saveEventData() {
+
+       if (!validateFields()) {
+         alert("Пожалуйста, заполните все поля для выбранных мероприятий.");
+         return false;
+       }
         const eventData={};
 
         document.querySelectorAll('.form-check-input').forEach((checkbox,index)=>{
@@ -1009,10 +1064,22 @@
         })
 
         localStorage.setItem('eventData', JSON.stringify(eventData));
+       return true;
 
-    }
+
+     }
     console.log(localStorage.getItem('eventData'))
+     document.getElementById('backPageBtn').addEventListener('click', (e) => {
+       if (!saveEventData()) {
+         e.preventDefault();
+       }
+     });
 
+     document.getElementById('nextPageBtn').addEventListener('click', (e) => {
+       if (!saveEventData()) {
+         e.preventDefault();
+       }
+     });
     document.getElementById('backPageBtn').addEventListener('click', saveEventData);
     document.getElementById('nextPageBtn').addEventListener('click', saveEventData);
 
@@ -1062,7 +1129,14 @@
     document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
         input.addEventListener('input', () => validateInputValue(input));
     });
-
+     document.head.insertAdjacentHTML("beforeend", `
+<style>
+    .is-invalid {
+        border: 1px solid red;
+        background-color: #ffe6e6;
+    }
+</style>
+`);
 
 
   </script>
