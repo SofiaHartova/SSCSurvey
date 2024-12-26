@@ -143,7 +143,7 @@
         document.querySelectorAll('input[type="number"][min="0"][max="10000"]').forEach(input => {
             input.addEventListener('input', () => validateInputValue(input));
         });
-        function saveEvents(event) {
+        function saveEvents() {
 
             const eventItems = document.querySelectorAll('.event-item');
             const events = [];
@@ -154,15 +154,16 @@
                 const dateStart = item.querySelector(`#eventDate${index + 1}Start`).value;
                 const dateEnd = item.querySelector(`#eventDate${index + 1}End`).value;
 
-                if (name && participants && date) {
+                if (name && participants && dateStart && dateEnd) {
                     events.push({ name, participants: Number(participants), dateStart, dateEnd });
                 }
             });
 
             localStorage.setItem('events', JSON.stringify(events));
         }
+      console.log(localStorage.getItem('events'));
 
-        function loadEvents() {
+      function loadEvents() {
             const savedEvents = JSON.parse(localStorage.getItem('events'));
 
             if (savedEvents) {
@@ -216,7 +217,7 @@
         //     });
         //
         // }
-        document.getElementById('submitFormBtn').addEventListener('click', sendDataToBackend);
+        // document.getElementById('submitFormBtn').addEventListener('click', sendDataToBackend);
         // console.log(sendDataToBackend());
 
     </script>
