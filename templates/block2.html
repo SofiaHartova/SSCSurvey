@@ -1047,15 +1047,19 @@
        }
         const eventData={};
 
-        document.querySelectorAll('.form-check-input').forEach((checkbox,index)=>{
+        document.querySelectorAll('.form-check-input').forEach((checkbox)=>{
             const eventId = checkbox.id.replace('event', '');
 
             const participants = document.getElementById('participants' + eventId)?.value;
             const dateStart = document.getElementById('date' + eventId+'Start')?.value || "Мероприятие не было выбрано";
             const dateEnd = document.getElementById('date' + eventId+'End')?.value || "Мероприятие не было выбрано";
+            const eventLabel = document.querySelector(`label[for="event${eventId}"]`).textContent.trim();
 
-            eventData[`event${eventId}`] = {
-                participants: participants,
+
+          eventData[`event${eventId}`] = {
+            name: eventLabel,
+
+            participants: participants,
                 dateStart: dateStart,
                 dateEnd: dateEnd
             };
@@ -1064,11 +1068,10 @@
         })
 
         localStorage.setItem('eventData', JSON.stringify(eventData));
-       return true;
-
-
+        return true;
      }
-    console.log(localStorage.getItem('eventData'))
+     console.log(localStorage.getItem('eventData'));
+
      document.getElementById('backPageBtn').addEventListener('click', (e) => {
        if (!saveEventData()) {
          e.preventDefault();
