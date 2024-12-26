@@ -42,7 +42,7 @@ def save_survey_data():
     block1_data = session.get("block1_data")
     block2_data = session.get("block2_data")
     block3_data = session.get("block3_data")
-    current_user_login = session.get("user")
+    school_name = session.get("school_name")
 
     if block1_data:
         organization = EducationalOrganization(
@@ -58,8 +58,7 @@ def save_survey_data():
             club_members_grade9=block1_data["class9"],
             club_members_grade10=block1_data["class10"],
             club_members_grade11=block1_data["class11"],
-            user_login=current_user_login,
-            name=request.form.get("school_name"),
+            name = school_name,
         )
         db.session.add(organization)
         db.session.commit()
@@ -100,7 +99,7 @@ def login():
         if login in users and users[login]["password"] == password:
             user = User(login)
             login_user(user)
-            session["user_login"] = login
+            session["school_name"] = login
             return redirect(url_for("action"))
         else:
             flash("Неверный логин или пароль!")
@@ -233,8 +232,8 @@ def view_data():
     """
     View data for the logged-in school.
     """
-    # Найти организацию по user_login авторизованного пользователя
-    organization = EducationalOrganization.query.filter_by(user_login=session["user_login"]).first()
+    # Найти организацию по school_name авторизованного пользователя
+    organization = EducationalOrganization.query.filter_by(school_name=session["school_name"]).first()
 
     if not organization:
         flash("Данные для вашей школы не найдены.", "error")
