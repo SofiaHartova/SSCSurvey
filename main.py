@@ -237,7 +237,7 @@ def view_data():
 
     if not organization:
         flash("Данные для вашей школы не найдены.", "error")
-        return redirect(url_for("option"))  # Вернуться на стартовую страницу
+        return redirect(url_for("action"))  # Вернуться на стартовую страницу
     
     # Передаем данные в шаблон
     return render_template(
