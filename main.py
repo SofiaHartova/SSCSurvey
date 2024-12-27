@@ -11,7 +11,7 @@ app.secret_key = "your_secret_key"  # Key for sessions to store user data
 login.login_view = "login"
 
 # Temporary user store for demo purposes
-users = {"admin": {"password": "password"}}
+# users = {"admin": {"password": "password"}}
 
 
 # User class implementing UserMixin
@@ -25,9 +25,10 @@ class User(UserMixin):
 
 @login.user_loader
 def load_user(user_id):
-    if user_id in users:
-        return User(user_id)
-    return None
+    return User(user_id)
+    # if user_id in users:
+    #     return User(user_id)
+    # return None
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
@@ -94,15 +95,21 @@ def login():
     """
     if request.method == "POST":
         login = request.form.get("login")
-        password = request.form.get("password")
 
-        if login in users and users[login]["password"] == password:
-            user = User(login)
-            login_user(user)
-            session["school_name"] = login
-            return redirect(url_for("action"))
-        else:
-            flash("Неверный логин или пароль!")
+        user = User(login)
+        login_user(user)
+        session["school_name"] = login
+
+        return redirect(url_for("action"))
+        # password = request.form.get("password")
+
+        # if login in users and users[login]["password"] == password:
+        #     user = User(login)
+        #     login_user(user)
+        #     session["school_name"] = login
+        #     return redirect(url_for("action"))
+        # else:
+        #     flash("Неверный логин или пароль!")
 
     return render_template("sign-in.html")
 
