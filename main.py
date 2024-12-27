@@ -180,10 +180,10 @@ def block2():
     if request.method == "POST":
         event_data = {
             "event1": {
-                "event_name": request.form.get("event1"),
-                "participants": request.form.get("participants1"),
-                "date_start": request.form.get("date_start1"),
-                "date_end": request.form.get("date_end1"),
+                "event_name": "Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)",
+                "participants": request.form.get("amountParticipants1"),
+                "date_start": request.form.get("eventStart1"),
+                "date_end": request.form.get("eventEnd1"),
             },
             # Todo: add other events
         }
@@ -203,15 +203,16 @@ def block3():
     Processing the third block of questions
     """
     if request.method == "POST":
-        event_details = {
-            "eventName1": {
-                "name": request.form.get("eventName1"),
-                "participants": request.form.get("participants1"),
-                "event_date_start": request.form.get("event_date_start1"),
-                "event_date_end": request.form.get("event_date_end1"),
-            }
+        event_details = None
+        # event_details = {
+        #     "custom_event1": {
+        #         "name": request.form.get("eventName1"),
+        #         "participants": request.form.get("amountParticipants1"),
+        #         "event_date_start": request.form.get("eventStart1"),
+        #         "event_date_end": request.form.get("eventEnd1"),
+        #     }
             # Todo: add other events
-        }
+        # }
         session["block3_data"] = event_details
 
         save_survey_data()
