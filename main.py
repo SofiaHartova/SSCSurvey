@@ -278,7 +278,7 @@ def school_data():
             class9=session["block1_data"]["class9"],
             class10=session["block1_data"]["class10"],
             class11=session["block1_data"]["class11"],
-            students_number=session.get("students_number", 0),
+            students_number=session["block1_data"]["students_number"],
         )
 
 
