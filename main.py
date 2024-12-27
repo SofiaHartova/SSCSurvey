@@ -146,17 +146,17 @@ def block1():
     if request.method == "POST":
         data = {
             "students_number": request.form.get("totalStudents"),
-            "class1": request.form.get("class1"),
-            "class2": request.form.get("class2"),
-            "class3": request.form.get("class3"),
-            "class4": request.form.get("class4"),
-            "class5": request.form.get("class5"),
-            "class6": request.form.get("class6"),
-            "class7": request.form.get("class7"),
-            "class8": request.form.get("class8"),
-            "class9": request.form.get("class9"),
-            "class10": request.form.get("class10"),
-            "class11": request.form.get("class11"),
+            "class1": request.form.get("class1", type = int, default = 0),
+            "class2": request.form.get("class2", type = int, default = 0),
+            "class3": request.form.get("class3", type = int, default = 0),
+            "class4": request.form.get("class4", type = int, default = 0),
+            "class5": request.form.get("class5", type = int, default = 0),
+            "class6": request.form.get("class6", type = int, default = 0),
+            "class7": request.form.get("class7", type = int, default = 0),
+            "class8": request.form.get("class8", type = int, default = 0),
+            "class9": request.form.get("class9", type = int, default = 0),
+            "class10": request.form.get("class10", type = int, default = 0),
+            "class11": request.form.get("class11", type = int, default = 0),
         }
         session["block1_data"] = data  # Save data in session
         return redirect(url_for("block2"))
