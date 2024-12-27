@@ -1,6 +1,7 @@
 html,
 body {
     background-color: #b9b9b9;
+    background: url("../img/e58b63131e2175713fcb86f732a48ffe.jpg");
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -10,7 +11,6 @@ body {
   margin-left: 100px;
   margin-right: 100px;
   max-width: 88%;
-  background-color: #b9b9b9;
 }
 
 h2 {
@@ -43,7 +43,7 @@ p {
 }
 
 .formtext {
-    width: 65vh;
+    width: 60vh;
     margin-top: 5px;
     margin-right: 40px;
     padding: 6px;
@@ -61,7 +61,7 @@ p {
 }
 
 .formnumber {
-    width: 30vh;
+    width: 25vh;
     margin-top: 5px;
     margin-right: 40px;
     padding: 6px;
@@ -79,7 +79,7 @@ p {
 }
 
 .formdate {
-    width: 25vh;
+    width: 18vh;
     margin-top: 5px;
     padding: 6px;
     border: 0;
@@ -95,14 +95,14 @@ p {
     height: 30px;
     width: 30px;
     margin-top: 45px;
-    margin-left: 0px;
+    margin-left: 0;
     padding: 0;
     text-align: center;
     font-size: 46px;
     border: 0;
     color: black;
-    background-color: #b9b9b9;
     transition: 0.3s;
+    background-color: transparent;
 }
 
 .button-colon:hover {
@@ -143,7 +143,6 @@ p {
   
 .button-event:active {
     background-color: #757575;
-    transition: 0;
 }
 
 .button-contain {
@@ -175,5 +174,4 @@ p {
   
 .button:active {
     background-color: #757575;
-    transition: 0;
 }

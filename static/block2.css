@@ -1,13 +1,13 @@
 html,
 body {
     background-color: #b9b9b9;
+    background: url("../img/e58b63131e2175713fcb86f732a48ffe.jpg");
 }
 
 .container {
   margin-left: 100px;
   margin-right: 100px;
   max-width: 88%;
-  background-color: #b9b9b9;
 }
 
 h2 {
