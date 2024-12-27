@@ -11,7 +11,7 @@ app.secret_key = "your_secret_key"  # Key for sessions to store user data
 login.login_view = "login"
 
 # Temporary user store for demo purposes
-users = {"admin": {"password": "password"}}
+# users = {"admin": {"password": "password"}}
 
 
 # User class implementing UserMixin
@@ -25,9 +25,10 @@ class User(UserMixin):
 
 @login.user_loader
 def load_user(user_id):
-    if user_id in users:
-        return User(user_id)
-    return None
+    return User(user_id)
+    # if user_id in users:
+    #     return User(user_id)
+    # return None
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
@@ -94,15 +95,21 @@ def login():
     """
     if request.method == "POST":
         login = request.form.get("login")
-        password = request.form.get("password")
 
-        if login in users and users[login]["password"] == password:
-            user = User(login)
-            login_user(user)
-            session["school_name"] = login
-            return redirect(url_for("action"))
-        else:
-            flash("Неверный логин или пароль!")
+        user = User(login)
+        login_user(user)
+        session["school_name"] = login
+
+        return redirect(url_for("action"))
+        # password = request.form.get("password")
+
+        # if login in users and users[login]["password"] == password:
+        #     user = User(login)
+        #     login_user(user)
+        #     session["school_name"] = login
+        #     return redirect(url_for("action"))
+        # else:
+        #     flash("Неверный логин или пароль!")
 
     return render_template("sign-in.html")
 
@@ -146,17 +153,17 @@ def block1():
     if request.method == "POST":
         data = {
             "students_number": request.form.get("totalStudents"),
-            "class1": request.form.get("class1"),
-            "class2": request.form.get("class2"),
-            "class3": request.form.get("class3"),
-            "class4": request.form.get("class4"),
-            "class5": request.form.get("class5"),
-            "class6": request.form.get("class6"),
-            "class7": request.form.get("class7"),
-            "class8": request.form.get("class8"),
-            "class9": request.form.get("class9"),
-            "class10": request.form.get("class10"),
-            "class11": request.form.get("class11"),
+            "class1": request.form.get("class1", type = int, default = 0),
+            "class2": request.form.get("class2", type = int, default = 0),
+            "class3": request.form.get("class3", type = int, default = 0),
+            "class4": request.form.get("class4", type = int, default = 0),
+            "class5": request.form.get("class5", type = int, default = 0),
+            "class6": request.form.get("class6", type = int, default = 0),
+            "class7": request.form.get("class7", type = int, default = 0),
+            "class8": request.form.get("class8", type = int, default = 0),
+            "class9": request.form.get("class9", type = int, default = 0),
+            "class10": request.form.get("class10", type = int, default = 0),
+            "class11": request.form.get("class11", type = int, default = 0),
         }
         session["block1_data"] = data  # Save data in session
         return redirect(url_for("block2"))
@@ -173,10 +180,10 @@ def block2():
     if request.method == "POST":
         event_data = {
             "event1": {
-                "event_name": request.form.get("event1"),
-                "participants": request.form.get("participants1"),
-                "date_start": request.form.get("date_start1"),
-                "date_end": request.form.get("date_end1"),
+                "event_name": "Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)",
+                "participants": request.form.get("amountParticipants1"),
+                "date_start": request.form.get("eventStart1"),
+                "date_end": request.form.get("eventEnd1"),
             },
             # Todo: add other events
         }
@@ -196,15 +203,16 @@ def block3():
     Processing the third block of questions
     """
     if request.method == "POST":
-        event_details = {
-            "eventName1": {
-                "name": request.form.get("eventName1"),
-                "participants": request.form.get("participants1"),
-                "event_date_start": request.form.get("event_date_start1"),
-                "event_date_end": request.form.get("event_date_end1"),
-            }
+        event_details = None
+        # event_details = {
+        #     "custom_event1": {
+        #         "name": request.form.get("eventName1"),
+        #         "participants": request.form.get("amountParticipants1"),
+        #         "event_date_start": request.form.get("eventStart1"),
+        #         "event_date_end": request.form.get("eventEnd1"),
+        #     }
             # Todo: add other events
-        }
+        # }
         session["block3_data"] = event_details
 
         save_survey_data()
@@ -278,7 +286,7 @@ def school_data():
             class9=session["block1_data"]["class9"],
             class10=session["block1_data"]["class10"],
             class11=session["block1_data"]["class11"],
-            students_number=session.get("students_number", 0),
+            students_number=session["block1_data"]["students_number"],
         )
 
 
