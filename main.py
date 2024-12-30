@@ -181,13 +181,14 @@ def block2():
         event_data = {
             "event1": {
                 "event_name": request.form.get("event1"),
-                "participants": request.form.get("participants1"),
-                "date_start": request.form.get("date_start1"),
-                "date_end": request.form.get("date_end1"),
+                "participants": request.form.get("amountParticipants1"),
+                "date_start": request.form.get("eventStart1"),
+                "date_end": request.form.get("eventEnd1"),
             },
             # Todo: add other events
         }
         session["block2_data"] = event_data  # Save data in session
+        print("Block2 Data:", session.get("block2_data"))
         if request.form.get("action") == "back":
             return redirect(url_for("block1"))
         elif request.form.get("action") == "next":
@@ -206,9 +207,9 @@ def block3():
         event_details = {
             "eventName1": {
                 "name": request.form.get("eventName1"),
-                "participants": request.form.get("participants1"),
-                "event_date_start": request.form.get("event_date_start1"),
-                "event_date_end": request.form.get("event_date_end1"),
+                "participants": request.form.get("extraAmountParticipants1"),
+                "event_date_start": request.form.get("extraEventStart1"),
+                "event_date_end": request.form.get("extraEventEnd1"),
             }
             # Todo: add other events
         }
