@@ -1,6 +1,7 @@
 html,
 body {
-  background-color: #b9b9b9;
+    background: url("../img/Фон.png") no-repeat;
+    height: 100%;
 }
 
 .container {
@@ -18,11 +19,11 @@ body {
     font-weight: 600;
 }
 
-.button {
+.btn {
     position: absolute;
     top:50%;
     height: 50px;
-    width: 700px;
+    width: 500px;
     font-size: 26px;
     border: 0;
     border-radius: 8px;
@@ -33,12 +34,11 @@ body {
     transition: 0.3s;
 }
   
-.button:hover {
+.btn:hover {
     background-color:#2A5CFF;
     transition: 0.3s;
 }
   
-.button:active {
+.btn:active {
     background-color: #757575;
-    transition: 0;
 }
