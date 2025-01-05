@@ -35,6 +35,9 @@ class EducationalOrganizationEvent(db.Model):
         db.Integer, db.ForeignKey("educational_organization.id"), primary_key=True
     )
     event_id = db.Column(db.Integer, db.ForeignKey("event.id"), primary_key=True)
+    date_start = db.Column(db.Date, nullable=False)
+    date_end = db.Column(db.Date, nullable=False)
+    participants = db.Column(db.Integer, nullable=False)
 
 
 class EducationalOrganizationSport(db.Model):
@@ -49,9 +52,6 @@ class Event(db.Model):
     __tablename__ = "event"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    date_start = db.Column(db.Date, nullable=False)
-    date_end = db.Column(db.Date, nullable=False)
-    participants = db.Column(db.Integer, nullable=False)
     organizations = db.relationship(
         "EducationalOrganization",
         secondary="educational_organization_event",

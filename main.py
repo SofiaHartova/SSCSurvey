@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from db.db import db
-from db.models import EducationalOrganization, Event
+from db.models import EducationalOrganization, Event, EducationalOrganizationEvent
 
 
 app = Flask(__name__)
@@ -45,45 +45,60 @@ def save_survey_data():
     block3_data = session.get("block3_data")
     school_name = session.get("school_name")
 
-    if block1_data:
-        organization = EducationalOrganization(
-            students_number=block1_data["students_number"],
-            club_members_grade1=block1_data["class1"],
-            club_members_grade2=block1_data["class2"],
-            club_members_grade3=block1_data["class3"],
-            club_members_grade4=block1_data["class4"],
-            club_members_grade5=block1_data["class5"],
-            club_members_grade6=block1_data["class6"],
-            club_members_grade7=block1_data["class7"],
-            club_members_grade8=block1_data["class8"],
-            club_members_grade9=block1_data["class9"],
-            club_members_grade10=block1_data["class10"],
-            club_members_grade11=block1_data["class11"],
-            name = school_name,
-        )
-        db.session.add(organization)
-        db.session.commit()
+    if not block1_data:
+        return
+
+    organization = EducationalOrganization(
+        students_number=block1_data["students_number"],
+        club_members_grade1=block1_data["class1"],
+        club_members_grade2=block1_data["class2"],
+        club_members_grade3=block1_data["class3"],
+        club_members_grade4=block1_data["class4"],
+        club_members_grade5=block1_data["class5"],
+        club_members_grade6=block1_data["class6"],
+        club_members_grade7=block1_data["class7"],
+        club_members_grade8=block1_data["class8"],
+        club_members_grade9=block1_data["class9"],
+        club_members_grade10=block1_data["class10"],
+        club_members_grade11=block1_data["class11"],
+        name = school_name,
+    )
+    db.session.add(organization)
+    db.session.commit()
 
     if block2_data:
         for event_data in block2_data.values():
             event = Event(
                 name=event_data["event_name"],
+            )
+            print(event_data)
+            db.session.add(event)
+            db.session.commit()
+
+            edu_org_event = EducationalOrganizationEvent(
+                educational_organization_id=organization.id,
+                event_id=event.id,
                 participants=event_data["participants"],
                 date_start=event_data["date_start"],
                 date_end=event_data["date_end"],
             )
-            db.session.add(event)
+            db.session.add(edu_org_event)
         db.session.commit()
 
     if block3_data:
         for event_name, event_info in block3_data.items():
             event = Event(
-                name=event_name,
-                participants=event_info["participants"],
-                date_start=event_info["event_date_start"],
-                date_end=event_info["event_date_end"],
+                name=event_data["event_name"],
+            )
+            edu_org_event = EducationalOrganizationEvent(
+                educational_organization_id=organization.id,
+                event_id=event.id,
+                participants=event_data["participants"],
+                date_start=event_data["date_start"],
+                date_end=event_data["date_end"],
             )
             db.session.add(event)
+            db.session.add(edu_org_event)
         db.session.commit()
 
 
@@ -180,13 +195,15 @@ def block2():
     if request.method == "POST":
         event_data = {
             "event1": {
-                "event_name": request.form.get("event1"),
+                "event_name": "Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)",
                 "participants": request.form.get("amountParticipants1"),
                 "date_start": request.form.get("eventStart1"),
                 "date_end": request.form.get("eventEnd1"),
             },
             # Todo: add other events
         }
+        print("jujujoojoojoo")
+        print(event_data)
         session["block2_data"] = event_data  # Save data in session
         print("Block2 Data:", session.get("block2_data"))
         if request.form.get("action") == "back":
@@ -205,12 +222,12 @@ def block3():
     """
     if request.method == "POST":
         event_details = {
-            "eventName1": {
-                "name": request.form.get("eventName1"),
-                "participants": request.form.get("extraAmountParticipants1"),
-                "event_date_start": request.form.get("extraEventStart1"),
-                "event_date_end": request.form.get("extraEventEnd1"),
-            }
+            # "eventName1": {
+            #     "name": request.form.get("eventName1"),
+            #     "participants": request.form.get("extraAmountParticipants1"),
+            #     "event_date_start": request.form.get("extraEventStart1"),
+            #     "event_date_end": request.form.get("extraEventEnd1"),
+            # }
             # Todo: add other events
         }
         session["block3_data"] = event_details
