@@ -189,23 +189,36 @@ def block1():
 @app.route("/block2", methods=["GET", "POST"])
 @login_required
 def block2():
-    """
-    Processing the second block of questions
-    """
     if request.method == "POST":
-        event_data = {
-            "event1": {
-                "event_name": "Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)",
-                "participants": request.form.get("amountParticipants1"),
-                "date_start": request.form.get("eventStart1"),
-                "date_end": request.form.get("eventEnd1"),
-            },
-            # Todo: add other events
-        }
-        print("jujujoojoojoo")
-        print(event_data)
-        session["block2_data"] = event_data  # Save data in session
+        event_data = {}
+        index = 1
+        MAX_EVENTS = 31
+
+        print("Начинаем обработку событий")
+
+        while index <= MAX_EVENTS:
+            checkbox_value = request.form.get(f"eventCheckbox{index}")
+            amount_field = request.form.get(f"amountParticipants{index}", "").strip()
+            date_start_field = request.form.get(f"eventStart{index}", "").strip()
+            date_end_field = request.form.get(f"eventEnd{index}", "").strip()
+
+            print(f"Итерация {index}, checkbox_value: {checkbox_value}, amount_field: {amount_field}, date_start_field: {date_start_field}, date_end_field: {date_end_field}")
+
+            if checkbox_value == "on" and (amount_field or date_start_field or date_end_field):
+                event_data[index] = {
+                    "event_name": f"Мероприятие {index}",
+                    "participants": amount_field,
+                    "date_start": date_start_field,
+                    "date_end": date_end_field,
+                }
+            index += 1
+
+        print(f"Обработанные данные мероприятий: {event_data}")
+
+        session["block2_data"] = event_data if event_data else None
+
         print("Block2 Data:", session.get("block2_data"))
+
         if request.form.get("action") == "back":
             return redirect(url_for("block1"))
         elif request.form.get("action") == "next":
