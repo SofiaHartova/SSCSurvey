@@ -1,6 +1,7 @@
 html,
 body {
     background-color: #b9b9b9;
+    background: url("../img/back-blocks.jpg");
 }
 
 .hidden {
@@ -229,7 +230,6 @@ h2 {
   
 .button-search:active {
     background-color: #757575;
-    transition: 0;
 }
 
 .p-container {
@@ -311,7 +311,6 @@ h2 {
   
 .button:active {
     background-color: #757575;
-    transition: 0;
 }
 
 .button-2 {
@@ -335,5 +334,4 @@ h2 {
   
 .button-2:active {
     background-color: #757575;
-    transition: 0;
 }

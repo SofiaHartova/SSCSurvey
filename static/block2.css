@@ -1,13 +1,14 @@
 html,
 body {
     background-color: #b9b9b9;
+    background: url("../img/back-blocks.jpg");
+
 }
 
 .container {
   margin-left: 100px;
   margin-right: 100px;
   max-width: 88%;
-  background-color: #b9b9b9;
 }
 
 h2 {
@@ -111,5 +112,4 @@ h2 {
   
 .button:active {
     background-color: #757575;
-    transition: 0;
 }
