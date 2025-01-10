@@ -1,4 +1,3 @@
-from main import db, app
 from db.models import Sport
 
 
@@ -152,14 +151,13 @@ sports = [
 ]
 
 
-def populate_sports():
+def base_populate_sport_table(app, db):
     with app.app_context():
         for index, sport_name in enumerate(sports, start=1):
             sport = Sport(id=index, name=sport_name)
-            db.session.add(sport)
+            # Insert sport uniquely
+            exists = Sport.query.filter_by(name=sport_name).first()
+            if not exists:
+                db.session.add(sport)
         db.session.commit()
-        print("Виды спорта успешно добавлены.")
-
-
-if __name__ == "__main__":
-    populate_sports()
+        print(f"Inserted base entries in sport table.")

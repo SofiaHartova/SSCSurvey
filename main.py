@@ -3,6 +3,8 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 from flask_sqlalchemy import SQLAlchemy
 from db.db import db
 from db.models import EducationalOrganization, Event, EducationalOrganizationEvent
+from db.events import base_populate_event_table
+from db.sports import base_populate_sport_table
 
 
 app = Flask(__name__)
@@ -347,4 +349,6 @@ def compare_schools():
 
 
 if __name__ == "__main__":
+    base_populate_event_table(app, db)
+    base_populate_sport_table(app, db)
     app.run(debug=True)
