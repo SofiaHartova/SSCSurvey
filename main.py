@@ -63,6 +63,13 @@ def save_survey_data():
         club_members_grade11=block1_data["class11"],
         name = school_name,
     )
+
+    # If such educational organization already submited data then ignore this try
+    exists = EducationalOrganization.query.filter_by(name=school_name).first()
+    if exists:
+        # TODO: Inform user that's ignored
+        return
+
     db.session.add(organization)
     db.session.commit()
 
@@ -72,8 +79,12 @@ def save_survey_data():
                 name=event_data["event_name"],
             )
             print(event_data)
-            db.session.add(event)
-            db.session.commit()
+
+            # Insert event uniquely
+            exists = Event.query.filter_by(name=event.name).first()
+            if not exists:
+                db.session.add(event)
+                db.session.commit()
 
             edu_org_event = EducationalOrganizationEvent(
                 educational_organization_id=organization.id,
@@ -97,9 +108,15 @@ def save_survey_data():
                 date_start=event_data["date_start"],
                 date_end=event_data["date_end"],
             )
-            db.session.add(event)
+
+            # Insert event uniquely
+            exists = Event.query.filter_by(name=event.name).first()
+            if not exists:
+                db.session.add(event)
+                db.session.commit()
+
             db.session.add(edu_org_event)
-        db.session.commit()
+            db.session.commit()
 
 
 # Login page
