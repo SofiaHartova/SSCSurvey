@@ -1,3 +1,4 @@
+import sys
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -349,6 +350,14 @@ def compare_schools():
 
 
 if __name__ == "__main__":
-    base_populate_event_table(app, db)
-    base_populate_sport_table(app, db)
+    if len(sys.argv) > 1:
+        if len(sys.argv) != 2:
+            exit(1)
+
+        if sys.argv.count("--populate"):
+            base_populate_event_table(app, db)
+            base_populate_sport_table(app, db)
+        else:
+            exit(1)
+
     app.run(debug=True)
