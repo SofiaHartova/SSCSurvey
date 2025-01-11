@@ -995,7 +995,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Проверка значений для полей классов
         document.querySelectorAll('.class-input').forEach(input => {
             input.addEventListener('input', function() {
                 const totalStudentsInput = document.getElementById('totalStudents');
@@ -1012,6 +1011,37 @@
                 if (inputValue > totalStudentsValue) {
                     alert(`Численность участников в классе не может превышать общее количество обучающихся (${totalStudentsValue}).`);
                     this.value = '';
+                }
+            });
+        });
+        function validateClassTotals() {
+            const totalStudentsInput = document.getElementById('totalStudents');
+            const totalStudentsValue = parseInt(totalStudentsInput.value, 10) || 0;
+
+            const classFields = [
+                'class1', 'class2', 'class3', 'class4', 'class5',
+                'class6', 'class7', 'class8', 'class9', 'class10', 'class11'
+            ];
+
+            let totalClassStudents = 0;
+
+            classFields.forEach(classId => {
+                const classInput = document.getElementById(classId);
+                const classValue = parseInt(classInput.value, 10) || 0;
+                totalClassStudents += classValue;
+            });
+
+            if (totalClassStudents > totalStudentsValue) {
+                alert(`Сумма численности по классам (${totalClassStudents}) не может превышать общее количество обучающихся (${totalStudentsValue}).`);
+                return false;
+            }
+            return true;
+        }
+        document.querySelectorAll('.class-input').forEach(input => {
+            input.addEventListener('input', function() {
+                // Проверяем сумму при каждом изменении значения
+                if (!validateClassTotals()) {
+                    this.value = ''; // Если сумма превышена, очищаем поле
                 }
             });
         });
@@ -1044,7 +1074,9 @@
                 alert(`Пожалуйста, проверьте данные. Они должны быть в диапазоне от 0 до 10000`);
                 return;
             }
-
+            if (!validateClassTotals()) {
+                return;
+            }
 
             const formData = {
                 totalStudents: totalStudentsValue,
@@ -1058,12 +1090,6 @@
 
             classFields.forEach(classId => {
                 const classValue = parseInt(document.getElementById(classId).value, 10) || 0;
-
-                if (classValue < 0 || classValue > 10000) {
-                    alert(`Пожалуйста, проверьте данные. Они должны быть в диапазоне от 0 до 10000`);
-                    return;
-                }
-
                 formData[classId] = classValue;
             })
 
