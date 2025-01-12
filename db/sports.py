@@ -1,7 +1,7 @@
 from db.models import Sport
 
 
-sports = [
+base_sports = [
     "Авиамодельный спорт",
     "Автомобильный спорт",
     "Айкидо",
@@ -153,8 +153,8 @@ sports = [
 
 def base_populate_sport_table(app, db):
     with app.app_context():
-        for index, sport_name in enumerate(sports, start=1):
-            sport = Sport(id=index, name=sport_name)
+        for sport_name in base_sports:
+            sport = Sport(name=sport_name)
             # Insert sport uniquely
             exists = Sport.query.filter_by(name=sport_name).first()
             if not exists:

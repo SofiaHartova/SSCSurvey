@@ -1,7 +1,7 @@
 from db.models import Event
 
 
-events = [
+base_events = [
     "Всероссийские соревнования по баскетболу среди команд общеобразовательных организаций (в рамках общероссийского проекта «Баскетбол – в школу»)",
     "Всероссийские соревнования по волейболу «Серебряный мяч» среди команд общеобразовательных организаций (в рамках общероссийского проекта «Волейбол – в школу»)",
     "Всероссийские соревнования по легкоатлетическому четырехборью «Шиповка юных» среди обучающихся общеобразовательных организаций",
@@ -37,7 +37,7 @@ events = [
 
 def base_populate_event_table(app, db):
     with app.app_context():
-        for event_name in events:
+        for event_name in base_events:
             event = Event(name=event_name)
             # Insert event uniquely
             exists = Event.query.filter_by(name=event_name).first()

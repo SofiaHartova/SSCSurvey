@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 from flask_sqlalchemy import SQLAlchemy
 from db.db import db
 from db.models import EducationalOrganization, Event, EducationalOrganizationEvent
-from db.events import base_populate_event_table
+from db.events import base_events, base_populate_event_table
 from db.sports import base_populate_sport_table
 
 
@@ -60,83 +60,94 @@ def save_survey_data():
     school_name = session.get("school_name")
 
     if not block1_data:
-        logging.warning("No block1_data found in session.")
+        logging.warning("No Block 1 data found in session.")
         return
 
-    organization = EducationalOrganization(
-        students_number=block1_data["students_number"],
-        club_members_grade1=block1_data["class1"],
-        club_members_grade2=block1_data["class2"],
-        club_members_grade3=block1_data["class3"],
-        club_members_grade4=block1_data["class4"],
-        club_members_grade5=block1_data["class5"],
-        club_members_grade6=block1_data["class6"],
-        club_members_grade7=block1_data["class7"],
-        club_members_grade8=block1_data["class8"],
-        club_members_grade9=block1_data["class9"],
-        club_members_grade10=block1_data["class10"],
-        club_members_grade11=block1_data["class11"],
-        name = school_name,
-    )
-
-    # If such educational organization already submited data then ignore this try
-    exists = EducationalOrganization.query.filter_by(name=school_name).first()
-    if exists:
-        logging.info(f"Data already exists for organization: {school_name}. Ignoring submission.")
-        return
-
-    db.session.add(organization)
-    db.session.commit()
-
-    logging.info(f"Saved EducationalOrganization: {school_name}")
-
-    if block2_data:
-        for event_data in block2_data.values():
-            event = Event(
-                name=event_data["event_name"],
-            )
-
-            # Insert event uniquely
-            exists = Event.query.filter_by(name=event.name).first()
-            if not exists:
-                db.session.add(event)
-                db.session.commit()
-                logging.info(f"Added new event: {event.name}")
-
-            edu_org_event = EducationalOrganizationEvent(
-                educational_organization_id=organization.id,
-                event_id=event.id,
-                participants=event_data["participants"],
-                date_start=event_data["date_start"],
-                date_end=event_data["date_end"],
-            )
-            db.session.add(edu_org_event)
+    # Ensure the organization exists
+    organization = EducationalOrganization.query.filter_by(name=school_name).first()
+    if not organization:
+        organization = EducationalOrganization(
+            students_number=block1_data["students_number"],
+            club_members_grade1=block1_data["class1"],
+            club_members_grade2=block1_data["class2"],
+            club_members_grade3=block1_data["class3"],
+            club_members_grade4=block1_data["class4"],
+            club_members_grade5=block1_data["class5"],
+            club_members_grade6=block1_data["class6"],
+            club_members_grade7=block1_data["class7"],
+            club_members_grade8=block1_data["class8"],
+            club_members_grade9=block1_data["class9"],
+            club_members_grade10=block1_data["class10"],
+            club_members_grade11=block1_data["class11"],
+            name=school_name,
+        )
+        db.session.add(organization)
         db.session.commit()
-        logging.info(f"Saved events for organization: {school_name}")
+        logging.info(f"Created new EducationalOrganization: {school_name}")
+    else:
+        logging.info(f"Found existing EducationalOrganization: {school_name}")
 
-    if block3_data:
-        for event_name, event_info in block3_data.items():
-            event = Event(
-                name=event_data["event_name"],
-            )
-            edu_org_event = EducationalOrganizationEvent(
-                educational_organization_id=organization.id,
-                event_id=event.id,
-                participants=event_data["participants"],
-                date_start=event_data["date_start"],
-                date_end=event_data["date_end"],
-            )
-
-            # Insert event uniquely
-            exists = Event.query.filter_by(name=event.name).first()
-            if not exists:
+    # Save Block 2 data
+    if block2_data:
+        logging.info(f"Saving Block 2 events for: {school_name}")
+        for event_data in block2_data.values():
+            event = Event.query.filter_by(name=event_data["event_name"]).first()
+            if not event:
+                event = Event(name=event_data["event_name"])
                 db.session.add(event)
                 db.session.commit()
-                logging.info(f"Added new block3 event: {event.name}")
+                logging.info(f"Created new Event: {event.name}")
 
-            db.session.add(edu_org_event)
-            db.session.commit()
-            logging.info(f"Saved block3 event for organization: {school_name}")
+            # Overwrite if differs
+            edu_org_event = EducationalOrganizationEvent.query.filter_by(event_id=event.id, educational_organization_id=organization.id).first()
+            if edu_org_event:
+                if edu_org_event.participants != event_data["participants"] or edu_org_event.date_start.strftime("%Y-%m-%d") != event_data["date_start"] or edu_org_event.date_start.strftime("%Y-%m-%d") != event_data["date_end"]:
+                    db.session.delete(edu_org_event)
+                    db.session.commit()
+                    logging.info(f"Overwriting existing relationship between Event({event.id}) and EducationalOrganization({organization.id})")
+                    edu_org_event=None
+
+            if not edu_org_event:
+                edu_org_event = EducationalOrganizationEvent(
+                    educational_organization_id=organization.id,
+                    event_id=event.id,
+                    participants=event_data["participants"],
+                    date_start=event_data["date_start"],
+                    date_end=event_data["date_end"],
+                )
+                db.session.add(edu_org_event)
+        db.session.commit()
+
+    # Save Block 3 data
+    if block3_data:
+        logging.info(f"Saving Block 3 events for: {school_name}")
+        for event_info in block3_data.values():
+            event = Event.query.filter_by(name=event_info["event_name"]).first()
+            if not event:
+                event = Event(name=event_info["event_name"])
+                db.session.add(event)
+                db.session.commit()
+                logging.info(f"Created new Event: {event.name}")
+
+            # Overwrite if differs
+            edu_org_event = EducationalOrganizationEvent.query.filter_by(event_id=event.id, educational_organization_id=organization.id).first()
+            if edu_org_event:
+                if edu_org_event.participants != event_data["participants"] or edu_org_event.date_start.strftime("%Y-%m-%d") != event_data["date_start"] or edu_org_event.date_start.strftime("%Y-%m-%d") != event_data["date_end"]:
+                    db.session.delete(edu_org_event)
+                    db.session.commit()
+                    logging.info(f"Overwriting existing relationship between Event({event.id}) and EducationalOrganization({organization.id})")
+                    edu_org_event=None
+
+            if not edu_org_event:
+                edu_org_event = EducationalOrganizationEvent(
+                    educational_organization_id=organization.id,
+                    event_id=event.id,
+                    participants=event_info["participants"],
+                    date_start=event_info["date_start"],
+                    date_end=event_info["date_end"],
+                )
+                db.session.add(edu_org_event)
+        db.session.commit()
 
 
 # Login page
@@ -220,24 +231,27 @@ def block1():
 @app.route("/block2", methods=["GET", "POST"])
 @login_required
 def block2():
+    """
+    Processing the second block of questions (Events data).
+    """
     if request.method == "POST":
         event_data = {}
-        index = 1
-        MAX_EVENTS = 31
+        index = 0
+        MAX_EVENT_IDX = 30
 
         logging.info("Processing events in block2.")
-        while index <= MAX_EVENTS:
-            checkbox_value = request.form.get(f"eventCheckbox{index}")
+        while index <= MAX_EVENT_IDX:
+            checkbox_value = request.form.get(f"eventCheckbox{index}", "")
             amount_field = request.form.get(f"amountParticipants{index}", "").strip()
             date_start_field = request.form.get(f"eventStart{index}", "").strip()
             date_end_field = request.form.get(f"eventEnd{index}", "").strip()
 
             logging.info(f"Iteration {index}, checkbox_value: {checkbox_value}, amount_field: {amount_field}, date_start_field: {date_start_field}, date_end_field: {date_end_field}")
 
-            if checkbox_value == "on" and (amount_field or date_start_field or date_end_field):
+            if checkbox_value == "on" and amount_field and date_start_field and date_end_field:
                 event_data[index] = {
-                    "event_name": f"Мероприятие {index}",
-                    "participants": amount_field,
+                    "event_name": base_events[index],
+                    "participants": int(amount_field),
                     "date_start": date_start_field,
                     "date_end": date_end_field,
                 }
@@ -262,16 +276,23 @@ def block3():
     Processing the third block of questions
     """
     if request.method == "POST":
-        event_details = {
-            # "eventName1": {
-            #     "name": request.form.get("eventName1"),
-            #     "participants": request.form.get("extraAmountParticipants1"),
-            #     "event_date_start": request.form.get("extraEventStart1"),
-            #     "event_date_end": request.form.get("extraEventEnd1"),
-            # }
-            # Todo: add other events
-        }
-        session["block3_data"] = event_details
+        event_data = {}
+        index = 1
+        event_name = request.form.get(f"eventName{index}")
+        while event_name:
+            amount_field = request.form.get(f"extraAmountParticipants{index}", "").strip()
+            date_start_field = request.form.get(f"extraEventStart{index}", "").strip()
+            date_end_field = request.form.get(f"extraEventEnd{index}", "").strip()
+
+            event_data[index - 1] = {
+                "event_name": event_name,
+                "participants": int(amount_field),
+                "date_start": date_start_field,
+                "date_end": date_end_field,
+             }
+            index += 1
+            event_name = request.form.get(f"eventName{index}")
+        session["block3_data"] = event_data if event_data else None
 
         save_survey_data()
 
