@@ -1,4 +1,5 @@
 import sys
+import logging
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -7,6 +8,16 @@ from db.models import EducationalOrganization, Event, EducationalOrganizationEve
 from db.events import base_populate_event_table
 from db.sports import base_populate_sport_table
 
+
+# Configure logging
+logging.basicConfig (
+    level = logging.INFO,
+    format = "%(asctime)s - %(levelname)s - %(message)s",
+    handlers = [
+        logging.FileHandler("sscs.log"),
+        logging.StreamHandler()
+    ]
+)
 
 app = Flask(__name__)
 login = LoginManager(app)
@@ -49,6 +60,7 @@ def save_survey_data():
     school_name = session.get("school_name")
 
     if not block1_data:
+        logging.warning("No block1_data found in session.")
         return
 
     organization = EducationalOrganization(
@@ -70,24 +82,26 @@ def save_survey_data():
     # If such educational organization already submited data then ignore this try
     exists = EducationalOrganization.query.filter_by(name=school_name).first()
     if exists:
-        # TODO: Inform user that's ignored
+        logging.info(f"Data already exists for organization: {school_name}. Ignoring submission.")
         return
 
     db.session.add(organization)
     db.session.commit()
+
+    logging.info(f"Saved EducationalOrganization: {school_name}")
 
     if block2_data:
         for event_data in block2_data.values():
             event = Event(
                 name=event_data["event_name"],
             )
-            print(event_data)
 
             # Insert event uniquely
             exists = Event.query.filter_by(name=event.name).first()
             if not exists:
                 db.session.add(event)
                 db.session.commit()
+                logging.info(f"Added new event: {event.name}")
 
             edu_org_event = EducationalOrganizationEvent(
                 educational_organization_id=organization.id,
@@ -98,6 +112,7 @@ def save_survey_data():
             )
             db.session.add(edu_org_event)
         db.session.commit()
+        logging.info(f"Saved events for organization: {school_name}")
 
     if block3_data:
         for event_name, event_info in block3_data.items():
@@ -117,9 +132,11 @@ def save_survey_data():
             if not exists:
                 db.session.add(event)
                 db.session.commit()
+                logging.info(f"Added new block3 event: {event.name}")
 
             db.session.add(edu_org_event)
             db.session.commit()
+            logging.info(f"Saved block3 event for organization: {school_name}")
 
 
 # Login page
@@ -135,16 +152,9 @@ def login():
         login_user(user)
         session["school_name"] = login
 
-        return redirect(url_for("action"))
-        # password = request.form.get("password")
+        logging.info(f"User logged in: {login}")
 
-        # if login in users and users[login]["password"] == password:
-        #     user = User(login)
-        #     login_user(user)
-        #     session["school_name"] = login
-        #     return redirect(url_for("action"))
-        # else:
-        #     flash("Неверный логин или пароль!")
+        return redirect(url_for("action"))
 
     return render_template("sign-in.html")
 
@@ -158,6 +168,7 @@ def logout():
     """
     logout_user()
     flash("Вы вышли из системы")
+    logging.info(f"User logged out.")
     return redirect(url_for("login"))
 
 
@@ -214,15 +225,14 @@ def block2():
         index = 1
         MAX_EVENTS = 31
 
-        print("Начинаем обработку событий")
-
+        logging.info("Processing events in block2.")
         while index <= MAX_EVENTS:
             checkbox_value = request.form.get(f"eventCheckbox{index}")
             amount_field = request.form.get(f"amountParticipants{index}", "").strip()
             date_start_field = request.form.get(f"eventStart{index}", "").strip()
             date_end_field = request.form.get(f"eventEnd{index}", "").strip()
 
-            print(f"Итерация {index}, checkbox_value: {checkbox_value}, amount_field: {amount_field}, date_start_field: {date_start_field}, date_end_field: {date_end_field}")
+            logging.info(f"Iteration {index}, checkbox_value: {checkbox_value}, amount_field: {amount_field}, date_start_field: {date_start_field}, date_end_field: {date_end_field}")
 
             if checkbox_value == "on" and (amount_field or date_start_field or date_end_field):
                 event_data[index] = {
@@ -233,11 +243,9 @@ def block2():
                 }
             index += 1
 
-        print(f"Обработанные данные мероприятий: {event_data}")
-
         session["block2_data"] = event_data if event_data else None
 
-        print("Block2 Data:", session.get("block2_data"))
+        logging.info("Block2 Data:", session.get("block2_data"))
 
         if request.form.get("action") == "back":
             return redirect(url_for("block1"))
@@ -357,6 +365,7 @@ if __name__ == "__main__":
         if sys.argv.count("--populate"):
             base_populate_event_table(app, db)
             base_populate_sport_table(app, db)
+            logging.info("Populated event and sport tables.")
         else:
             exit(1)
 
