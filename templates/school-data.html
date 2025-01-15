@@ -86,12 +86,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Всероссийские соревнования по баскетболу</td>
-                        <td id="participants1Output">-</td>
-                        <td id="date1Start">-</td>
-                        <td id="date1End">-</td>
-                    </tr>
+                    {% if events %}
+                        {% for event in events %}
+                        <tr>
+                            <td>{{ event.event_name }}</td>
+                            <td>{{ event.participants }}</td>
+                            <td>{{ event.date_start.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ event.date_end.strftime('%Y-%m-%d') }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">Данные о мероприятиях отсутствуют</td>
+                        </tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>

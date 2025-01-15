@@ -250,7 +250,7 @@ def block2():
 
             if checkbox_value == "on" and amount_field and date_start_field and date_end_field:
                 event_data[index] = {
-                    "event_name": base_events[index],
+                    "event_name": base_events[index - 1],
                     "participants": int(amount_field),
                     "date_start": date_start_field,
                     "date_end": date_end_field,
@@ -313,20 +313,31 @@ def thanks():
     return render_template("thanks.html")
 
 
-@app.route("/view-data")
+@app.route("/view-data", methods=['POST', 'GET'])
 @login_required
 def view_data():
     """
     View data for the logged-in school.
     """
     # Найти организацию по school_name авторизованного пользователя
-    organization = EducationalOrganization.query.filter_by(school_name=session["school_name"]).first()
+    organization = EducationalOrganization.query.filter_by(name=session["school_name"]).first()
 
     if not organization:
         flash("Данные для вашей школы не найдены.", "error")
         return redirect(url_for("action"))  # Вернуться на стартовую страницу
-    
-    # Передаем данные в шаблон
+
+    # Загрузить данные о мероприятиях для текущей школы
+    events = db.session.query(
+        Event.name.label("event_name"),
+        EducationalOrganizationEvent.participants,
+        EducationalOrganizationEvent.date_start,
+        EducationalOrganizationEvent.date_end,
+    ).join(
+        EducationalOrganizationEvent, Event.id == EducationalOrganizationEvent.event_id
+    ).filter(
+        EducationalOrganizationEvent.educational_organization_id == organization.id
+    ).all()
+
     return render_template(
         "school-data.html",
         class1=organization.club_members_grade1,
@@ -342,31 +353,8 @@ def view_data():
         class11=organization.club_members_grade11,
         students_number=organization.students_number,
         school_name=organization.name,
+        events=events,  # Передаем список мероприятий
     )
-
-
-@app.route("/school-data", methods=["GET", "POST"])
-@login_required
-def school_data():
-    """
-    School data page
-    """
-    if request.method == "POST":
-        return render_template(
-            "school-data.html",
-            class1=session["block1_data"]["class1"],
-            class2=session["block1_data"]["class2"],
-            class3=session["block1_data"]["class3"],
-            class4=session["block1_data"]["class4"],
-            class5=session["block1_data"]["class5"],
-            class6=session["block1_data"]["class6"],
-            class7=session["block1_data"]["class7"],
-            class8=session["block1_data"]["class8"],
-            class9=session["block1_data"]["class9"],
-            class10=session["block1_data"]["class10"],
-            class11=session["block1_data"]["class11"],
-            students_number=session["block1_data"]["students_number"],
-        )
 
 
 @app.route("/compare-schools", methods=["GET"])
