@@ -39,7 +39,10 @@ p {
 .label {
     margin-bottom: 15px;
     font-size: 20px;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 120%;
 }
 
 .formtext {

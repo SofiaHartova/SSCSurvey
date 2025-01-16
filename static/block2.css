@@ -113,3 +113,11 @@ h2 {
 .button:active {
     background-color: #757575;
 }
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: block;
+}
