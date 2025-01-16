@@ -77,58 +77,54 @@
                 </div>
             </div>        
 
-            <div class="container my-4">
-                <h2 class="mb-4">Отчет по мероприятиям</h2>
-                <table class="table table-bordered">
-                    <thead>
+        <div class="container my-4">
+            <!-- Таблица базовых мероприятий -->
+            <h2 class="mb-4">Отчет по мероприятиям</h2>
+            <table class="table table-bordered">
+                <thead>
                     <tr>
                         <th>Мероприятие</th>
                         <th>Количество участников</th>
                         <th>Дата начала</th>
                         <th>Дата окончания</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {% if events %}
-                        {% for event in events %}
-                        <tr>
-                            <td>{{ event.event_name }}</td>
-                            <td>{{ event.participants }}</td>
-                            <td>{{ event.date_start.strftime('%Y-%m-%d') }}</td>
-                            <td>{{ event.date_end.strftime('%Y-%m-%d') }}</td>
-                        </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="4" class="text-center">Данные о мероприятиях отсутствуют</td>
-                        </tr>
-                    {% endif %}
-                    </tbody>
-                </table>
-            </div>
+                </thead>
+                <tbody>
+                    {% for event in base_events %}
+                    <tr>
+                        <td>{{ event.event_name }}</td>
+                        <td>{{ event.participants }}</td>
+                        <td>{{ event.date_start }}</td>
+                        <td>{{ event.date_end }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
+            <!-- Таблица других мероприятий -->
             <div class="container my-4">
                 <h2 class="mb-4">Другие мероприятия</h2>
                 <table class="table table-bordered">
                     <thead>
-                    <tr>
-                        <th>Мероприятие</th>
-                        <th>Количество участников</th>
-                        <th>Дата начала</th>
-                        <th>Дата окончания</th>
-                    </tr>
+                        <tr>
+                            <th>Мероприятие</th>
+                            <th>Количество участников</th>
+                            <th>Дата начала</th>
+                            <th>Дата окончания</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Всероссийские соревнования по баскетболу</td>
-                        <td id="extraParticipants1Output">-</td>
-                        <td id="extraDate1Start">-</td>
-                        <td id="extraDate1End">-</td>
-                    </tr>
+                        {% for event in other_events %}
+                        <tr>
+                            <td>{{ event.event_name }}</td>
+                            <td>{{ event.participants }}</td>
+                            <td>{{ event.date_start }}</td>
+                            <td>{{ event.date_end }}</td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
-
         </div>
 
         <!-- Отчет о всех школах -->

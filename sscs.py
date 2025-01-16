@@ -8,6 +8,7 @@ from db.models import EducationalOrganization, Event, EducationalOrganizationEve
 from db.events import base_events, base_populate_event_table
 from db.sports import base_populate_sport_table
 from db.mapping import SPORT_MAPPING
+from db.events import base_events
 
 
 # Configure logging
@@ -393,6 +394,16 @@ def view_data():
         EducationalOrganizationSport.educational_organization_id == organization.id
     ).all()
 
+    base_event_names = set(base_events)
+    base_events_data = []
+    other_events_data = []
+
+    for event in events:
+        if event.event_name in base_event_names:
+            base_events_data.append(event)
+        else:
+            other_events_data.append(event)
+
     return render_template(
         "school-data.html",
         class1=organization.club_members_grade1,
@@ -408,7 +419,8 @@ def view_data():
         class11=organization.club_members_grade11,
         students_number=organization.students_number,
         school_name=organization.name,
-        events=events,  # Передаем список мероприятий
+        base_events=base_events_data,  # Базовые мероприятия
+        other_events=other_events_data,  # Дополнительные мероприятия
         sports=sports,  # Передаем список видов спорта
     )
 
