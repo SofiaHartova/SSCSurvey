@@ -4,9 +4,10 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from db.db import db
-from db.models import EducationalOrganization, Event, EducationalOrganizationEvent
+from db.models import EducationalOrganization, Event, EducationalOrganizationEvent, EducationalOrganizationSport, Sport
 from db.events import base_events, base_populate_event_table
 from db.sports import base_populate_sport_table
+from db.mapping import SPORT_MAPPING
 
 
 # Configure logging
@@ -86,6 +87,41 @@ def save_survey_data():
         logging.info(f"Created new EducationalOrganization: {school_name}")
     else:
         logging.info(f"Found existing EducationalOrganization: {school_name}")
+
+    # Сохранение видов спорта и количества участников
+    for sport_name, sport_id in SPORT_MAPPING.items():
+        # Получаем название чекбокса и поля для численности
+        checkbox_name = f"{sport_name}Check"
+        count_name = f"{sport_name}Count"
+
+        # Проверяем, выбран ли вид спорта
+        if checkbox_name in block1_data and block1_data[checkbox_name]:
+            # Извлекаем количество участников
+            members = int(block1_data.get(count_name, 0))
+
+            # Проверяем, есть ли уже запись в таблице
+            org_sport = EducationalOrganizationSport.query.filter_by(
+                educational_organization_id=organization.id, sport_id=sport_id
+            ).first()
+
+            if org_sport:
+                # Обновляем численность
+                org_sport.members = members
+                logging.info(
+                    f"Updated members for sport ID {sport_id} in organization {school_name} to {members}"
+                )
+            else:
+                # Создаем новую запись
+                org_sport = EducationalOrganizationSport(
+                    educational_organization_id=organization.id,
+                    sport_id=sport_id,
+                    members=members,
+                )
+                db.session.add(org_sport)
+                logging.info(
+                    f"Added new sport ID {sport_id} with {members} members for organization {school_name}"
+                )
+    db.session.commit()
 
     # Save Block 2 data
     if block2_data:
@@ -222,6 +258,15 @@ def block1():
             "class10": request.form.get("class10", type = int, default = 0),
             "class11": request.form.get("class11", type = int, default = 0),
         }
+        # Сохраняем выбранные виды спорта и численность
+        for sport_name in SPORT_MAPPING.keys():
+            checkbox_name = f"{sport_name}Check"
+            count_name = f"{sport_name}Count"
+
+            # Проверяем, был ли чекбокс отмечен
+            data[checkbox_name] = checkbox_name in request.form
+            data[count_name] = request.form.get(count_name, type=int, default=0)
+            
         session["block1_data"] = data  # Save data in session
         return redirect(url_for("block2"))
 
@@ -338,6 +383,16 @@ def view_data():
         EducationalOrganizationEvent.educational_organization_id == organization.id
     ).all()
 
+    # Загрузить данные о видах спорта для текущей школы
+    sports = db.session.query(
+        Sport.name.label("sport_name"),
+        EducationalOrganizationSport.members,
+    ).join(
+        EducationalOrganizationSport, Sport.id == EducationalOrganizationSport.sport_id
+    ).filter(
+        EducationalOrganizationSport.educational_organization_id == organization.id
+    ).all()
+
     return render_template(
         "school-data.html",
         class1=organization.club_members_grade1,
@@ -354,6 +409,7 @@ def view_data():
         students_number=organization.students_number,
         school_name=organization.name,
         events=events,  # Передаем список мероприятий
+        sports=sports,  # Передаем список видов спорта
     )
 
 

@@ -46,6 +46,7 @@ class EducationalOrganizationSport(db.Model):
         db.Integer, db.ForeignKey("educational_organization.id"), primary_key=True
     )
     sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), primary_key=True)
+    members = db.Column(db.Integer, nullable=False, default=0)
 
 
 class Event(db.Model):

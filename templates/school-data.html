@@ -60,19 +60,22 @@
                 <div class="card-body">
                     <table class="table table-sm table-bordered">
                         <thead>
-                        <tr>
-                            <th>Вид спорта</th>
-                            <th>Количество занимающихся</th>
-                        </tr>
+                            <tr>
+                                <th>Вид спорта</th>
+                                <th>Количество занимающихся</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr><td>Баскетбол</td><td id="basketballOutput">0</td></tr>
-                        <tr><td>Бокс</td><td id="boxingOutput">0</td></tr>
-                        <tr><td>Волейбол</td><td id="volleyballOutput">0</td></tr>
+                            {% for sport in sports %}
+                            <tr>
+                                <td>{{ sport.sport_name }}</td>
+                                <td>{{ sport.members }}</td>
+                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div>        
 
             <div class="container my-4">
                 <h2 class="mb-4">Отчет по мероприятиям</h2>
